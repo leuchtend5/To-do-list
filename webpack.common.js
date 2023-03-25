@@ -34,7 +34,7 @@ module.exports = {
     minimizer: ['...', new CssMinimizerPlugin()],
     minimize: true,
   },
-  plugin: [
+  plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.resolve(__dirname, 'src/index.html'),
