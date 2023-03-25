@@ -1,0 +1,25 @@
+.main-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  height: 100vh;
+  gap: 20px;
+}
+
+li {
+  list-style: none;
+}
+
+.all-menu {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  background-color: burlywood;
+  flex-grow: 1;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}

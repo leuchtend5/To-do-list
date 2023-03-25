@@ -1,0 +1,18 @@
+@use 'modules/header';
+@use 'modules/main-content';
+@use 'modules/breakpoints/small';
+
+@font-face {
+  font-family: title-font;
+  src: url(../../public/fonts/Roboto-Regular.ttf);
+}
+
+@font-face {
+  font-family: content-font;
+  src: url(../../public/fonts/Roboto-Light.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
