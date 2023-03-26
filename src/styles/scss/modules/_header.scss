@@ -3,6 +3,16 @@ header {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
-  padding: 5px 10px;
+  gap: 15px;
+  padding: 5px 20px;
+
+  h1 {
+    font-family: title-font;
+    font-size: 1.6rem;
+  }
+
+  .hamburger-menu {
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
 }

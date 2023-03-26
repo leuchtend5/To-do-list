@@ -1,31 +1,67 @@
+@charset "UTF-8";
 header {
   background-color: pink;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 10px;
-  padding: 5px 10px;
+  gap: 15px;
+  padding: 5px 20px;
+}
+header h1 {
+  font-family: title-font;
+  font-size: 1.6rem;
+}
+header .hamburger-menu {
+  font-size: 1.3rem;
+  cursor: pointer;
 }
 
 .main-content {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  height: 100vh;
-  gap: 20px;
+  position: relative;
+  height: 100%;
 }
-
-li {
+.main-content li:hover,
+.main-content p:hover {
+  background-color: rgba(186, 183, 183, 0.3);
+}
+.main-content a:link {
+  text-decoration: none;
+}
+.main-content a:visited {
+  color: black;
+}
+.main-content span {
+  padding-right: 5px;
+  font-size: 1.1rem;
+}
+.main-content li {
   list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  border-radius: 5px;
 }
-
-.all-menu {
-  width: 200px;
+.main-content .all-menu {
+  width: 300px;
   display: flex;
   flex-direction: column;
+  transition: 0.15s ease-in-out;
+  gap: 30px;
+  padding: 30px 15px;
 }
-
-.content {
+.main-content .all-menu .project-list li::before {
+  content: "•";
+  font-size: 2rem;
+  color: pink;
+}
+.main-content .all-menu.active {
+  display: flex;
+}
+.main-content .content {
   background-color: burlywood;
   flex-grow: 1;
   height: 100%;
@@ -33,9 +69,25 @@ li {
   justify-content: center;
 }
 
-@media screen and (max-width: 540px) {
-  .all-menu {
-    width: 150px;
+footer {
+  margin-top: auto;
+}
+
+@media screen and (max-width: 600px) {
+  header {
+    gap: 10px;
+    padding: 5px 12px;
+  }
+  header h1 {
+    font-size: 1.4rem;
+  }
+  header .hamburger-menu {
+    font-size: 1.2rem;
+  }
+  .main-content .all-menu {
+    position: absolute;
+    background-color: white;
+    height: 100%;
   }
 }
 @font-face {
@@ -49,4 +101,11 @@ li {
 * {
   margin: 0;
   padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  font-family: content-font;
 }/*# sourceMappingURL=main.css.map */

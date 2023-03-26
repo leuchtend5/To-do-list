@@ -1,5 +1,22 @@
-@media screen and (max-width: 540px) {
-  .all-menu {
-    width: 150px;
+@media screen and (max-width: 600px) {
+  header {
+    gap: 10px;
+    padding: 5px 12px;
+
+    h1 {
+      font-size: 1.4rem;
+    }
+
+    .hamburger-menu {
+      font-size: 1.2rem;
+    }
+  }
+
+  .main-content {
+    .all-menu {
+      position: absolute;
+      background-color: white;
+      height: 100%;
+    }
   }
 }
