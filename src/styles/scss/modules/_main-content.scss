@@ -6,7 +6,7 @@
   height: 100%;
 
   li:hover,
-  .project-group > p:hover {
+  .project-group:hover {
     background-color: rgba($color: #bab7b7, $alpha: 0.3);
   }
 
@@ -32,6 +32,11 @@
 
   .fa-square-check {
     color: #eb8909;
+  }
+
+  .fa-plus {
+    opacity: 0.5;
+    font-size: 1.1rem;
   }
 
   .group-name {
@@ -68,19 +73,28 @@
 
   .all-menu {
     background-color: rgb(244, 244, 244);
-    width: 300px;
+    width: 0;
     display: flex;
     flex-direction: column;
-    transition: 0.15s ease-in-out;
     gap: 25px;
-    padding: 30px 18px;
+    padding: 30px 0;
+    position: relative;
+    left: -400px;
+    transition: left 0.15s ease-in-out, width 0.15s ease-in-out;
 
     .project-list {
+      .project-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 5px;
+        padding: 8px 5px;
+        cursor: pointer;
+      }
+
       .project-group > p {
         font-size: 1.1rem;
         font-family: title-font;
-        padding: 8px 2px;
-        border-radius: 5px;
       }
 
       li {
@@ -99,7 +113,9 @@
   }
 
   .all-menu.active {
-    display: flex;
+    width: 300px;
+    padding: 30px 18px;
+    left: 0;
   }
 
   .content {

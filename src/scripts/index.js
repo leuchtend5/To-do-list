@@ -6,13 +6,13 @@ const listProjectName = document.querySelectorAll('.project-list .group-name > p
 const hamburgerMenuBtn = document.querySelector('.hamburger-menu');
 const menuList = document.querySelector('.all-menu');
 const footerText = document.querySelector('.footer-text');
+const overlay = document.querySelector('.overlay');
 
 function sampleOnly() {
   listProjectName.forEach((list) => {
     if (list.textContent.length > 25) {
       list.textContent = `${list.textContent.substring(0, 25)}...`;
     }
-    console.log(list.textContent.length);
   });
 
   let menuToggle = true;
@@ -20,9 +20,11 @@ function sampleOnly() {
   hamburgerMenuBtn.addEventListener('click', () => {
     if (menuToggle) {
       menuList.classList.add('active');
+      overlay.classList.add('active');
       menuToggle = !menuToggle;
     } else {
       menuList.classList.remove('active');
+      overlay.classList.remove('active');
       menuToggle = !menuToggle;
     }
   });
