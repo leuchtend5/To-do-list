@@ -7,6 +7,7 @@ const hamburgerMenuBtn = document.querySelector('.hamburger-menu');
 const menuList = document.querySelector('.all-menu');
 const footerText = document.querySelector('.footer-text');
 const overlay = document.querySelector('.overlay');
+const content = document.querySelector('.content');
 
 function sampleOnly() {
   listProjectName.forEach((list) => {
@@ -21,10 +22,12 @@ function sampleOnly() {
     if (menuToggle) {
       menuList.classList.add('active');
       overlay.classList.add('active');
+      content.classList.add('active');
       menuToggle = !menuToggle;
     } else {
       menuList.classList.remove('active');
       overlay.classList.remove('active');
+      content.classList.remove('active');
       menuToggle = !menuToggle;
     }
   });
