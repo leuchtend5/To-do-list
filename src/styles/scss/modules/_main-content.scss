@@ -6,7 +6,7 @@
   height: 100%;
 
   li:hover,
-  p:hover {
+  .project-group > p:hover {
     background-color: rgba($color: #bab7b7, $alpha: 0.3);
   }
 
@@ -18,9 +18,30 @@
     color: black;
   }
 
-  span {
-    padding-right: 5px;
-    font-size: 1.1rem;
+  .fa-inbox {
+    color: #246fe0;
+  }
+
+  .fa-calendar-day {
+    color: #058527;
+  }
+
+  .fa-calendar-week {
+    color: #692fc2;
+  }
+
+  .fa-square-check {
+    color: #eb8909;
+  }
+
+  .group-name {
+    display: flex;
+    gap: 5px;
+
+    span {
+      padding-right: 5px;
+      font-size: 1.1rem;
+    }
   }
 
   li {
@@ -32,19 +53,47 @@
     border-radius: 5px;
   }
 
+  .menu {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .total-tasks {
+    font-size: 0.8rem;
+    opacity: 0.5;
+  }
+
   .all-menu {
+    background-color: rgb(244, 244, 244);
     width: 300px;
     display: flex;
     flex-direction: column;
     transition: 0.15s ease-in-out;
-    gap: 30px;
-    padding: 30px 15px;
+    gap: 25px;
+    padding: 30px 18px;
 
     .project-list {
-      li::before {
-        content: '\2022'; // bullet points
-        font-size: 2rem;
-        color: pink;
+      .project-group > p {
+        font-size: 1.1rem;
+        font-family: title-font;
+        padding: 8px 2px;
+        border-radius: 5px;
+      }
+
+      li {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .group-name {
+        span {
+          opacity: 0.5;
+        }
       }
     }
   }
@@ -54,7 +103,6 @@
   }
 
   .content {
-    background-color: burlywood;
     flex-grow: 1;
     height: 100%;
     display: flex;
