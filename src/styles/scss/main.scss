@@ -1,6 +1,5 @@
 @use 'modules/header';
 @use 'modules/main-content';
-@use 'modules/footer';
 @use 'modules/breakpoints/small';
 
 @font-face {
@@ -23,4 +22,5 @@ body {
   flex-direction: column;
   height: 100vh;
   font-family: content-font;
+  overflow: hidden;
 }

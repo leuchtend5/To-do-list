@@ -5,14 +5,27 @@ import App from './views/app';
 const listProjectName = document.querySelectorAll('.project-list .group-name > p');
 const hamburgerMenuBtn = document.querySelector('.hamburger-menu');
 const menuList = document.querySelector('.all-menu');
-const footerText = document.querySelector('.footer-text');
 const overlay = document.querySelector('.overlay');
 const content = document.querySelector('.content');
+const header = document.querySelector('header');
+const title = document.querySelector('.menu-title');
+
+function observeHeaderHeight() {
+  document.documentElement.style.setProperty('--top-header', `${header.offsetHeight}px`);
+}
+
+function observeTitleHeight() {
+  document.documentElement.style.setProperty('--top-title', `${title.offsetHeight}px`);
+}
+
+function observeTitleWidth() {
+  document.documentElement.style.setProperty('--width-title', `${title.offsetWidth}px`);
+}
 
 function sampleOnly() {
   listProjectName.forEach((list) => {
-    if (list.textContent.length > 25) {
-      list.textContent = `${list.textContent.substring(0, 25)}...`;
+    if (list.textContent.length > 20) {
+      list.textContent = `${list.textContent.substring(0, 20)}...`;
     }
   });
 
@@ -31,9 +44,13 @@ function sampleOnly() {
       menuToggle = !menuToggle;
     }
   });
-}
 
-const newDate = new Date().getFullYear();
-footerText.textContent = `Copyright © ${newDate} Leuchtend`;
+  const resizeHeaderHeight = new ResizeObserver(observeHeaderHeight);
+  const resizeTitleHeight = new ResizeObserver(observeTitleHeight);
+  const resizeTitleWidth = new ResizeObserver(observeTitleWidth);
+  resizeHeaderHeight.observe(header);
+  resizeTitleHeight.observe(title);
+  resizeTitleWidth.observe(title);
+}
 
 sampleOnly();

@@ -2,7 +2,8 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  height: 100%;
+  overflow-y: scroll;
+  margin-top: var(--top-header);
 
   li:hover,
   .project-group:hover {
@@ -72,14 +73,16 @@
 
   .all-menu {
     background-color: rgb(244, 244, 244);
-    width: 300px;
+    width: 270px;
+    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 25px;
     padding: 30px 18px;
-    position: relative;
-    margin-left: -336px;
+    position: fixed;
+    margin-left: -306px;
     transition: margin-left 0.15s ease-in-out;
+    top: calc(var(--top-header) - 1px);
 
     .project-list {
       .project-group {
@@ -116,21 +119,28 @@
   }
 
   .content {
-    flex-grow: 1;
+    width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-left: 0;
     transition: margin-left 0.15s ease-in-out;
   }
 
   .menu-title {
-    position: sticky; // might delete
+    background-color: grey;
+    position: fixed;
+    top: calc(var(--top-header) - 1px);
+    width: 50%;
+  }
+
+  .content.active {
+    margin-left: 306px;
+    transition: margin-left 0.15s ease-in-out;
   }
 
   .user-tasks {
-    height: 300px;
-    overflow-y: scroll;
+    margin-top: var(--top-title);
+    width: var(--width-title);
   }
 }
