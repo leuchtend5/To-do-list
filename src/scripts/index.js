@@ -9,6 +9,8 @@ const overlay = document.querySelector('.overlay');
 const content = document.querySelector('.content');
 const header = document.querySelector('header');
 const title = document.querySelector('.menu-title');
+const addTask = document.querySelector('.add-task');
+const taskInputBox = document.querySelector('.task-input');
 
 function observeHeaderHeight() {
   document.documentElement.style.setProperty('--top-header', `${header.offsetHeight}px`);
@@ -30,6 +32,7 @@ function sampleOnly() {
   });
 
   let menuToggle = true;
+  let addTaskToggle = true;
 
   hamburgerMenuBtn.addEventListener('click', () => {
     if (menuToggle) {
@@ -51,6 +54,18 @@ function sampleOnly() {
   resizeHeaderHeight.observe(header);
   resizeTitleHeight.observe(title);
   resizeTitleWidth.observe(title);
+
+  addTask.addEventListener('click', () => {
+    if (addTaskToggle) {
+      taskInputBox.classList.add('active');
+      addTask.classList.add('nonactive');
+      addTaskToggle = !addTaskToggle;
+    } else {
+      taskInputBox.classList.remove('active');
+      addTask.classList.remove('nonactive');
+      addTaskToggle = !addTaskToggle;
+    }
+  });
 }
 
 sampleOnly();
