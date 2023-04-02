@@ -16,6 +16,7 @@
     "no-console": "off",
     "no-underscore-dangle": "off",
     "import/extensions": ["error", "never"],
-    "no-param-reassign": "off"
+    "no-param-reassign": "off",
+    "object-curly-newline": "off"
   }
 }

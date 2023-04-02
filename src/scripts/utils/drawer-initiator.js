@@ -1,35 +1,43 @@
-// const DrawerInitiator = {
-//   init({ button, drawer, menus }) {
-//     let hamburgerToggle = true;
+const DrawerInitiator = {
+  init({ button, drawer, projectName }) {
+    const overlay = document.querySelector('.overlay');
+    const content = document.querySelector('.content');
+    let menuToggle = true;
 
-//     button.addEventListener('click', (event) => {
-//       if (hamburgerToggle) {
-//         this._toggleDrawer(event, drawer);
-//       } else {
-//         this._closeDrawer(event, drawer);
-//       }
+    button.addEventListener('click', (event) => {
+      if (menuToggle) {
+        this._toggleDrawer(event, drawer);
+        overlay.classList.add('active');
+        content.classList.add('active');
+        menuToggle = !menuToggle;
+      } else {
+        this._closeDrawer(event, drawer);
+        overlay.classList.remove('active');
+        content.classList.remove('active');
+        menuToggle = !menuToggle;
+      }
+    });
 
-//       hamburgerToggle = !hamburgerToggle;
-//     });
+    this._limitProjectName(projectName);
+  },
 
-//     menus.forEach((menu) => {
-//       menu.addEventListener('click', (event) => {
-//         this._closeDrawer(event, drawer);
+  _toggleDrawer(event, drawer) {
+    event.stopPropagation();
+    drawer.classList.add('active');
+  },
 
-//         hamburgerToggle = !hamburgerToggle;
-//       });
-//     });
-//   },
+  _closeDrawer(event, drawer) {
+    event.stopPropagation();
+    drawer.classList.remove('active');
+  },
 
-//   _toggleDrawer(event, drawer) {
-//     event.stopPropagation();
-//     drawer.classList.add('active');
-//   },
+  _limitProjectName(projectName) {
+    projectName.forEach((list) => {
+      if (list.textContent.length > 20) {
+        list.textContent = `${list.textContent.substring(0, 20)}...`;
+      }
+    });
+  },
+};
 
-//   _closeDrawer(event, drawer) {
-//     event.stopPropagation();
-//     drawer.classList.remove('active');
-//   },
-// };
-
-// export default DrawerInitiator;
+export default DrawerInitiator;

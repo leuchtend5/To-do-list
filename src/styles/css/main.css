@@ -152,6 +152,8 @@ header .hamburger-menu {
   align-items: center;
   gap: 10px;
   cursor: pointer;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  padding: 10px 0;
 }
 .main-content .add-task p {
   opacity: 0.5;
@@ -168,11 +170,12 @@ header .hamburger-menu {
   display: none;
 }
 .main-content .task-input {
-  display: flex;
+  display: none;
   border: 1px solid rgba(0, 0, 0, 0.3);
   width: var(--width-title);
   flex-direction: column;
   align-items: center;
+  box-sizing: border-box;
   padding: 15px;
   gap: 10px;
   border-radius: 10px;
@@ -201,6 +204,8 @@ header .hamburger-menu {
 }
 .main-content .decision-panel {
   justify-content: space-between;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  padding-top: 10px;
 }
 .main-content .category,
 .main-content .priority {
