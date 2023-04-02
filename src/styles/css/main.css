@@ -118,11 +118,14 @@ header .hamburger-menu {
 }
 .main-content .content {
   width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   transition: margin-left 0.15s ease-in-out;
+}
+.main-content .empty {
+  width: 1px;
+  min-height: 100px;
 }
 .main-content .menu-title {
   background-color: white;
@@ -184,10 +187,7 @@ header .hamburger-menu {
   outline: none;
   border: none;
   font-size: 0.9rem;
-}
-.main-content #task-name {
-  font-family: title-font;
-  font-weight: bold;
+  font-family: content-font;
 }
 .main-content .set-panel,
 .main-content .decision-panel,
@@ -197,6 +197,7 @@ header .hamburger-menu {
 }
 .main-content .yes-no-btn {
   width: auto;
+  gap: 10px;
 }
 .main-content .decision-panel {
   justify-content: space-between;
@@ -205,15 +206,34 @@ header .hamburger-menu {
 .main-content .priority {
   width: 100px;
 }
+.main-content .priority {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+.main-content .priority span,
+.main-content .priority p {
+  width: auto;
+}
+.main-content .priority .flag-dropdown {
+  position: absolute;
+  background-color: pink;
+  top: 23px;
+  display: none;
+}
+.main-content .priority .flag-dropdown.active {
+  display: flex;
+}
 .main-content .set-panel {
   gap: 15px;
 }
 .main-content .due-date {
-  width: 105px;
+  width: 118px;
 }
-.main-content .cancel-btn,
-.main-content .add-btn {
-  width: 80px;
+.main-content .cancel-btn {
+  width: 90px;
 }
 
 @media screen and (max-width: 680px) {
@@ -230,6 +250,9 @@ header .hamburger-menu {
   }
   .main-content .menu-title {
     width: 80%;
+  }
+  .main-content .due-date {
+    width: 105px;
   }
   .content.active {
     margin-left: 0 !important;
@@ -266,5 +289,4 @@ body {
   flex-direction: column;
   height: 100vh;
   font-family: content-font;
-  overflow: hidden;
 }/*# sourceMappingURL=main.css.map */

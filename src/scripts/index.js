@@ -11,18 +11,34 @@ const header = document.querySelector('header');
 const title = document.querySelector('.menu-title');
 const addTask = document.querySelector('.add-task');
 const taskInputBox = document.querySelector('.task-input');
+const priorityBtn = document.querySelector('.priority');
+const flagDropdown = document.querySelector('.flag-dropdown');
 
-function observeHeaderHeight() {
-  document.documentElement.style.setProperty('--top-header', `${header.offsetHeight}px`);
-}
+const ObserveHeight = {
+  observeHeaderHeight() {
+    document.documentElement.style.setProperty('--top-header', `${header.offsetHeight}px`);
+  },
 
-function observeTitleHeight() {
-  document.documentElement.style.setProperty('--top-title', `${title.offsetHeight}px`);
-}
+  observeTitleHeight() {
+    document.documentElement.style.setProperty('--top-title', `${title.offsetHeight}px`);
+  },
 
-function observeTitleWidth() {
-  document.documentElement.style.setProperty('--width-title', `${title.offsetWidth}px`);
-}
+  observeTitleWidth() {
+    document.documentElement.style.setProperty('--width-title', `${title.offsetWidth}px`);
+  },
+};
+
+// function observeHeaderHeight() {
+//   document.documentElement.style.setProperty('--top-header', `${header.offsetHeight}px`);
+// }
+
+// function observeTitleHeight() {
+//   document.documentElement.style.setProperty('--top-title', `${title.offsetHeight}px`);
+// }
+
+// function observeTitleWidth() {
+//   document.documentElement.style.setProperty('--width-title', `${title.offsetWidth}px`);
+// }
 
 function sampleOnly() {
   listProjectName.forEach((list) => {
@@ -33,6 +49,7 @@ function sampleOnly() {
 
   let menuToggle = true;
   let addTaskToggle = true;
+  let flagToggle = true;
 
   hamburgerMenuBtn.addEventListener('click', () => {
     if (menuToggle) {
@@ -48,9 +65,9 @@ function sampleOnly() {
     }
   });
 
-  const resizeHeaderHeight = new ResizeObserver(observeHeaderHeight);
-  const resizeTitleHeight = new ResizeObserver(observeTitleHeight);
-  const resizeTitleWidth = new ResizeObserver(observeTitleWidth);
+  const resizeHeaderHeight = new ResizeObserver(ObserveHeight.observeHeaderHeight);
+  const resizeTitleHeight = new ResizeObserver(ObserveHeight.observeTitleHeight);
+  const resizeTitleWidth = new ResizeObserver(ObserveHeight.observeTitleWidth);
   resizeHeaderHeight.observe(header);
   resizeTitleHeight.observe(title);
   resizeTitleWidth.observe(title);
@@ -64,6 +81,16 @@ function sampleOnly() {
       taskInputBox.classList.remove('active');
       addTask.classList.remove('nonactive');
       addTaskToggle = !addTaskToggle;
+    }
+  });
+
+  priorityBtn.addEventListener('click', () => {
+    if (flagToggle) {
+      flagDropdown.classList.add('active');
+      flagToggle = !flagToggle;
+    } else {
+      flagDropdown.classList.remove('active');
+      flagToggle = !flagToggle;
     }
   });
 }
