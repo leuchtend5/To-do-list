@@ -1,5 +1,5 @@
 import DrawerInitiator from '../utils/drawer-initiator';
-import addTaskHelper from '../utils/add-task-helper';
+import addTaskUIHelper from '../utils/addtask-UI-helper';
 
 class App {
   constructor({ buttonHamburger, drawer, addTask, inputBox, priority, projectName }) {
@@ -20,7 +20,7 @@ class App {
       projectName: this._projectName,
     });
 
-    addTaskHelper.init({
+    addTaskUIHelper.init({
       addTask: this._addTask,
       inputBox: this._inputBox,
       priority: this._priority,

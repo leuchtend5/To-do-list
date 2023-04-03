@@ -65,8 +65,6 @@ header .hamburger-menu {
   cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 8px;
-  border-radius: 5px;
 }
 .main-content .menu {
   width: 100%;
@@ -92,6 +90,10 @@ header .hamburger-menu {
   transition: margin-left 0.15s ease-in-out;
   top: calc(var(--top-header) - 1px);
 }
+.main-content .all-menu li {
+  padding: 8px;
+  border-radius: 5px;
+}
 .main-content .all-menu .project-list .project-group {
   display: flex;
   align-items: center;
@@ -105,7 +107,6 @@ header .hamburger-menu {
   font-family: title-font;
 }
 .main-content .all-menu .project-list li {
-  display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
@@ -180,6 +181,10 @@ header .hamburger-menu {
   gap: 10px;
   border-radius: 10px;
 }
+.main-content .task-input button {
+  padding: 5px;
+  border-radius: 4px;
+}
 .main-content .task-input.active {
   display: flex;
 }
@@ -202,14 +207,20 @@ header .hamburger-menu {
   width: auto;
   gap: 10px;
 }
+.main-content .yes-no-btn button {
+  width: 70px;
+}
+.main-content .yes-no-btn .add-btn {
+  background-color: #ccd5ae;
+  color: white;
+}
 .main-content .decision-panel {
-  justify-content: space-between;
+  justify-content: flex-end;
   border-top: 1px solid rgba(0, 0, 0, 0.3);
   padding-top: 10px;
 }
-.main-content .category,
-.main-content .priority {
-  width: 100px;
+.main-content .decision-panel button {
+  border: none;
 }
 .main-content .priority {
   display: flex;
@@ -217,6 +228,26 @@ header .hamburger-menu {
   align-items: center;
   gap: 10px;
   position: relative;
+  background-color: white;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  width: auto;
+}
+.main-content .priority li {
+  justify-content: center;
+  padding: 5px 0;
+  gap: 5px;
+}
+.main-content .priority .p-one {
+  color: red;
+}
+.main-content .priority .p-two {
+  color: orange;
+}
+.main-content .priority .p-three {
+  color: blue;
+}
+.main-content .priority .p-four {
+  color: green;
 }
 .main-content .priority span,
 .main-content .priority p {
@@ -224,21 +255,26 @@ header .hamburger-menu {
 }
 .main-content .priority .flag-dropdown {
   position: absolute;
-  background-color: pink;
-  top: 23px;
+  background-color: white;
+  top: 27px;
   display: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
 }
 .main-content .priority .flag-dropdown.active {
   display: flex;
+}
+.main-content .priority .current-flag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
 }
 .main-content .set-panel {
   gap: 15px;
 }
 .main-content .due-date {
   width: 118px;
-}
-.main-content .cancel-btn {
-  width: 90px;
 }
 
 @media screen and (max-width: 680px) {
@@ -256,8 +292,8 @@ header .hamburger-menu {
   .main-content .menu-title {
     width: 80%;
   }
-  .main-content .due-date {
-    width: 105px;
+  .main-content .yes-no-btn button {
+    width: 30px;
   }
   .content.active {
     margin-left: 0 !important;

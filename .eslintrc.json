@@ -17,6 +17,7 @@
     "no-underscore-dangle": "off",
     "import/extensions": ["error", "never"],
     "no-param-reassign": "off",
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "no-unused-expressions": "off"
   }
 }

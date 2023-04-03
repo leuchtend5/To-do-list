@@ -55,8 +55,6 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    padding: 8px;
-    border-radius: 5px;
   }
 
   .menu {
@@ -85,6 +83,11 @@
     transition: margin-left 0.15s ease-in-out;
     top: calc(var(--top-header) - 1px);
 
+    li {
+      padding: 8px;
+      border-radius: 5px;
+    }
+
     .project-list {
       .project-group {
         display: flex;
@@ -101,7 +104,6 @@
       }
 
       li {
-        display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
@@ -194,6 +196,11 @@
     padding: 15px;
     gap: 10px;
     border-radius: 10px;
+
+    button {
+      padding: 5px;
+      border-radius: 4px;
+    }
   }
 
   .task-input.active {
@@ -221,17 +228,25 @@
   .yes-no-btn {
     width: auto;
     gap: 10px;
+
+    button {
+      width: 70px;
+    }
+
+    .add-btn {
+      background-color: #ccd5ae;
+      color: white;
+    }
   }
 
   .decision-panel {
-    justify-content: space-between;
+    justify-content: flex-end;
     border-top: 1px solid rgba($color: #000000, $alpha: 0.3);
     padding-top: 10px;
-  }
 
-  .category,
-  .priority {
-    width: 100px;
+    button {
+      border: none;
+    }
   }
 
   .priority {
@@ -240,6 +255,31 @@
     align-items: center;
     gap: 10px;
     position: relative;
+    background-color: white;
+    border: 1px solid rgba($color: #000000, $alpha: 0.3);
+    width: auto;
+
+    li {
+      justify-content: center;
+      padding: 5px 0;
+      gap: 5px;
+    }
+
+    .p-one {
+      color: red;
+    }
+
+    .p-two {
+      color: orange;
+    }
+
+    .p-three {
+      color: blue;
+    }
+
+    .p-four {
+      color: green;
+    }
 
     span,
     p {
@@ -248,13 +288,22 @@
 
     .flag-dropdown {
       position: absolute;
-      background-color: pink;
-      top: 23px;
+      background-color: white;
+      top: 27px;
       display: none;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      border-radius: 4px;
     }
 
     .flag-dropdown.active {
       display: flex;
+    }
+
+    .current-flag {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
     }
   }
 
@@ -264,9 +313,5 @@
 
   .due-date {
     width: 118px;
-  }
-
-  .cancel-btn {
-    width: 90px;
   }
 }
