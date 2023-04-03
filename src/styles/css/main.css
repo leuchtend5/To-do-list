@@ -146,6 +146,30 @@ header .hamburger-menu {
 .main-content .user-tasks {
   margin-top: var(--top-title);
   width: var(--width-title);
+  padding-bottom: 10px;
+}
+.main-content .user-tasks .task-wrapper {
+  display: flex;
+  gap: 10px;
+}
+.main-content .user-tasks .task-wrapper > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.main-content .user-tasks .task-wrapper .task-date {
+  display: flex;
+  gap: 5px;
+  font-size: 0.8rem;
+  opacity: 0.5;
+}
+.main-content .user-tasks .task-wrapper .task-desc {
+  opacity: 0.5;
+  font-size: 0.9rem;
+}
+.main-content .user-tasks span {
+  font-size: 1.2rem;
+  color: red;
 }
 .main-content .add-task {
   width: var(--width-title);
@@ -153,7 +177,7 @@ header .hamburger-menu {
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 10px 0;
 }
 .main-content .add-task p {

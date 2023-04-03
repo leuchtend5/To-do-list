@@ -154,6 +154,35 @@
   .user-tasks {
     margin-top: var(--top-title);
     width: var(--width-title);
+    padding-bottom: 10px;
+
+    .task-wrapper {
+      display: flex;
+      gap: 10px;
+
+      & > div {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .task-date {
+        display: flex;
+        gap: 5px;
+        font-size: 0.8rem;
+        opacity: 0.5;
+      }
+
+      .task-desc {
+        opacity: 0.5;
+        font-size: 0.9rem;
+      }
+    }
+
+    span {
+      font-size: 1.2rem;
+      color: red;
+    }
   }
 
   .add-task {
@@ -162,7 +191,7 @@
     align-items: center;
     gap: 10px;
     cursor: pointer;
-    border-top: 1px solid rgba($color: #000000, $alpha: 0.3);
+    border-top: 1px solid rgba($color: #000000, $alpha: 0.1);
     padding: 10px 0;
 
     p {
