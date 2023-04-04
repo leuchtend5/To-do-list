@@ -18,6 +18,8 @@
     "import/extensions": ["error", "never"],
     "no-param-reassign": "off",
     "object-curly-newline": "off",
-    "no-unused-expressions": "off"
+    "no-unused-expressions": "off",
+    "class-methods-use-this": "off",
+    "no-useless-constructor": "off"
   }
 }
