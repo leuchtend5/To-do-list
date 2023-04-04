@@ -164,6 +164,8 @@
         display: flex;
         flex-direction: column;
         gap: 5px;
+        position: relative;
+        width: 100%;
       }
 
       .task-date {
@@ -177,6 +179,30 @@
         opacity: 0.5;
         font-size: 0.9rem;
       }
+
+      .edit-panel {
+        display: none;
+
+        .edit-btn,
+        .delete-btn {
+          opacity: 0.5;
+        }
+
+        .edit-btn:hover,
+        .delete-btn:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    .task-wrapper:hover .edit-panel {
+      display: flex;
+      position: absolute;
+      right: 0;
+      gap: 10px;
+      font-size: 1.1rem;
+      background-color: white;
+      cursor: pointer;
     }
 
     span {
