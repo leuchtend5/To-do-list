@@ -4,11 +4,15 @@ const InboxPage = {
   async render() {
     return `
      <div class="menu-title">Inbox</div>
-     <user-task></user-task>
+     <div class="user-tasks"></div>
     `;
   },
 
-  // async afterRender() {},
+  async afterRender() {
+    const userTasks = document.querySelector('.user-tasks');
+    const userTask = document.createElement('user-task');
+    userTasks.appendChild(userTask);
+  },
 };
 
 export default InboxPage;

@@ -155,7 +155,7 @@ header .hamburger-menu {
 .main-content .user-tasks .task-wrapper > div {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 8px;
   position: relative;
   width: 100%;
 }

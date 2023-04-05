@@ -35,6 +35,7 @@ class App {
     const page = routes[url];
     this._content.innerHTML = await page.render();
     const title = document.querySelector('.menu-title');
+    await page.afterRender();
 
     const resizeTitleHeight = new ResizeObserver(() => {
       ObserveElement.observeTitleHeight(title);

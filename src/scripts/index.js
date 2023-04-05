@@ -33,4 +33,9 @@ window.addEventListener('load', async () => {
 
 window.addEventListener('hashchange', async () => {
   await app.renderPage();
+
+  const resizeHeaderHeight = new ResizeObserver(() => {
+    ObserveElement.observeHeaderHeight(header);
+  });
+  resizeHeaderHeight.observe(header);
 });
