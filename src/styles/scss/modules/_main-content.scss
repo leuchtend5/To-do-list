@@ -37,7 +37,8 @@
   .fa-plus {
     opacity: 0.5;
     font-size: 1.1rem;
-    padding: 2px;
+    padding: 2px 3px;
+    color: black;
   }
 
   .group-name {
@@ -84,8 +85,10 @@
     top: calc(var(--top-header) - 1px);
 
     li {
-      padding: 8px;
       border-radius: 5px;
+      a {
+        padding: 8px;
+      }
     }
 
     .project-list {
@@ -107,6 +110,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        padding: 8px;
       }
 
       .group-name {
@@ -166,6 +170,7 @@
         gap: 8px;
         position: relative;
         width: 100%;
+        margin-bottom: 10px;
       }
 
       .task-date {
@@ -311,8 +316,14 @@
     gap: 10px;
     position: relative;
     background-color: white;
-    border: 1px solid rgba($color: #000000, $alpha: 0.3);
     width: auto;
+    height: 25px;
+    cursor: pointer;
+
+    &,
+    .fa-flag {
+      font-size: 0.8rem;
+    }
 
     li {
       justify-content: center;
@@ -339,6 +350,8 @@
     span,
     p {
       width: auto;
+      display: flex;
+      align-items: center;
     }
 
     .flag-dropdown {
@@ -364,9 +377,20 @@
 
   .set-panel {
     gap: 15px;
+    align-items: center;
   }
 
   .due-date {
     width: 118px;
+  }
+
+  #due-date {
+    height: 23px;
+    border-radius: 4px;
+  }
+
+  #due-date,
+  .priority {
+    border: 1px solid rgba($color: #000000, $alpha: 0.3);
   }
 }

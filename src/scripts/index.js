@@ -7,18 +7,19 @@ const listProjectName = document.querySelectorAll('.project-list .group-name > p
 const hamburgerMenuBtn = document.querySelector('.hamburger-menu');
 const menuWrapper = document.querySelector('.all-menu');
 const header = document.querySelector('header');
-const addTask = document.querySelector('.add-task');
-const taskInputBox = document.querySelector('.task-input');
-const priorityBtn = document.querySelector('.priority');
+// const addTask = document.querySelector('.add-task');
+// const taskInputBox = document.querySelector('.task-input');
+// const priorityBtn = document.querySelector('.priority');
 const content = document.querySelector('.content');
+// const title = document.querySelector('.menu-title');
 
 const app = new App({
   content,
   buttonHamburger: hamburgerMenuBtn,
   drawer: menuWrapper,
-  addTask,
-  inputBox: taskInputBox,
-  priority: priorityBtn,
+  // addTask,
+  // inputBox: taskInputBox,
+  // priority: priorityBtn,
   projectName: listProjectName,
 });
 
@@ -28,6 +29,16 @@ window.addEventListener('load', async () => {
   const resizeHeaderHeight = new ResizeObserver(() => {
     ObserveElement.observeHeaderHeight(header);
   });
+  // const resizeTitleHeight = new ResizeObserver(() => {
+  //   ObserveElement.observeTitleHeight(title);
+  // });
+
+  // const resizeTitleWidth = new ResizeObserver(() => {
+  //   ObserveElement.observeTitleWidth(title);
+  // });
+
+  // resizeTitleHeight.observe(title);
+  // resizeTitleWidth.observe(title);
   resizeHeaderHeight.observe(header);
 });
 
@@ -37,5 +48,15 @@ window.addEventListener('hashchange', async () => {
   const resizeHeaderHeight = new ResizeObserver(() => {
     ObserveElement.observeHeaderHeight(header);
   });
+  // const resizeTitleHeight = new ResizeObserver(() => {
+  //   ObserveElement.observeTitleHeight(title);
+  // });
+
+  // const resizeTitleWidth = new ResizeObserver(() => {
+  //   ObserveElement.observeTitleWidth(title);
+  // });
+
+  // resizeTitleHeight.observe(title);
+  // resizeTitleWidth.observe(title);
   resizeHeaderHeight.observe(header);
 });

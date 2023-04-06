@@ -50,7 +50,8 @@ header .hamburger-menu {
 .main-content .fa-plus {
   opacity: 0.5;
   font-size: 1.1rem;
-  padding: 2px;
+  padding: 2px 3px;
+  color: black;
 }
 .main-content .group-name {
   display: flex;
@@ -91,8 +92,10 @@ header .hamburger-menu {
   top: calc(var(--top-header) - 1px);
 }
 .main-content .all-menu li {
-  padding: 8px;
   border-radius: 5px;
+}
+.main-content .all-menu li a {
+  padding: 8px;
 }
 .main-content .all-menu .project-list .project-group {
   display: flex;
@@ -110,6 +113,7 @@ header .hamburger-menu {
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  padding: 8px;
 }
 .main-content .all-menu .project-list .group-name span {
   opacity: 0.5;
@@ -158,6 +162,7 @@ header .hamburger-menu {
   gap: 8px;
   position: relative;
   width: 100%;
+  margin-bottom: 10px;
 }
 .main-content .user-tasks .task-wrapper .task-date {
   display: flex;
@@ -275,8 +280,13 @@ header .hamburger-menu {
   gap: 10px;
   position: relative;
   background-color: white;
-  border: 1px solid rgba(0, 0, 0, 0.3);
   width: auto;
+  height: 25px;
+  cursor: pointer;
+}
+.main-content .priority,
+.main-content .priority .fa-flag {
+  font-size: 0.8rem;
 }
 .main-content .priority li {
   justify-content: center;
@@ -298,6 +308,8 @@ header .hamburger-menu {
 .main-content .priority span,
 .main-content .priority p {
   width: auto;
+  display: flex;
+  align-items: center;
 }
 .main-content .priority .flag-dropdown {
   position: absolute;
@@ -318,9 +330,18 @@ header .hamburger-menu {
 }
 .main-content .set-panel {
   gap: 15px;
+  align-items: center;
 }
 .main-content .due-date {
   width: 118px;
+}
+.main-content #due-date {
+  height: 23px;
+  border-radius: 4px;
+}
+.main-content #due-date,
+.main-content .priority {
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 @media screen and (max-width: 680px) {
