@@ -142,7 +142,7 @@ header .hamburger-menu {
   font-weight: bold;
   font-size: 1.4rem;
   transition: width 0.15s ease-in-out;
-  z-index: 10;
+  z-index: 2;
 }
 .main-content .content.active {
   margin-left: 306px;
@@ -375,6 +375,7 @@ header .hamburger-menu {
     position: fixed;
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
+    z-index: 3;
   }
   .overlay.active {
     display: flex;
