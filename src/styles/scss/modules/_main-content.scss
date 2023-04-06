@@ -148,6 +148,7 @@
     font-weight: bold;
     font-size: 1.4rem;
     transition: width 0.15s ease-in-out;
+    z-index: 10;
   }
 
   .content.active {
@@ -357,7 +358,7 @@
     .flag-dropdown {
       position: absolute;
       background-color: white;
-      top: 27px;
+      top: 25px;
       display: none;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
       border-radius: 4px;
