@@ -13,20 +13,11 @@ const InboxPage = {
 
   async afterRender() {
     const userTasks = document.querySelector('.user-tasks');
-
-    const userTask = document.createElement('user-task');
-    const userTask2 = document.createElement('user-task');
-    const userTask3 = document.createElement('user-task');
-
     const addTask = document.createElement('add-task');
-    userTasks.appendChild(userTask);
-    userTasks.appendChild(userTask2);
-
-    userTasks.appendChild(userTask3);
-
     userTasks.insertAdjacentElement('afterend', addTask);
 
     await customElements.whenDefined('add-task');
+
     const addTaskSelector = addTask.querySelector('.add-task');
     const taskInputBox = addTask.querySelector('.task-input');
     const priorityBtn = addTask.querySelector('.priority');

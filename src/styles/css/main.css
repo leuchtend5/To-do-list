@@ -266,6 +266,12 @@ header .hamburger-menu {
   background-color: #ccd5ae;
   color: white;
 }
+.main-content .yes-no-btn .add-btn:hover {
+  filter: brightness(90%);
+}
+.main-content .yes-no-btn .add-btn.disable {
+  cursor: not-allowed;
+}
 .main-content .decision-panel {
   justify-content: flex-end;
   border-top: 1px solid rgba(0, 0, 0, 0.3);
@@ -317,7 +323,7 @@ header .hamburger-menu {
   background-color: white;
   top: 25px;
   display: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
 }
 .main-content .priority .flag-dropdown.active {
@@ -341,7 +347,8 @@ header .hamburger-menu {
   border-radius: 4px;
 }
 .main-content #due-date,
-.main-content .priority {
+.main-content .priority,
+.main-content .flag-dropdown {
   border: 1px solid rgba(0, 0, 0, 0.3);
 }
 

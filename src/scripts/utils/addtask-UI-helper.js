@@ -1,3 +1,6 @@
+import TaskData from '../data/add-task-data';
+import TaskDataInInbox from '../data/task-data-inbox';
+
 const addTaskUIHelper = {
   init({ addTask, inputBox, priority }) {
     const cancelBtn = document.querySelector('.cancel-btn');
@@ -20,6 +23,12 @@ const addTaskUIHelper = {
     });
 
     this._watchMediaChange({ mediaQuery, cancelBtn, addBtn });
+
+    if (TaskData.userInputTaskData().taskName === '') {
+      addBtn.disabled = true;
+    } else {
+      this._addTaskButton(addBtn);
+    }
   },
 
   _addTaskToggle({ addTask, inputBox, cancelBtn }) {
@@ -65,6 +74,22 @@ const addTaskUIHelper = {
         addBtn,
         mediaQuery,
       });
+    });
+  },
+
+  _addTaskButton(button) {
+    const test = new TaskDataInInbox();
+
+    // button.disabled = true;
+    // button.classList.add('disable');
+    // button.addEventListener('click', () => {
+    //   button.disabled = false;
+    //   button.classList.remove('disable');
+    //   test.addNewTask(TaskData.userInputTaskData());
+    //   console.log(test.getAllTask());
+    // });
+    button.addEventListener('click', () => {
+      // console.log(TaskData.userInputTaskData().taskName);
     });
   },
 };

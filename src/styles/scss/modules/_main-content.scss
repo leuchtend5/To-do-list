@@ -298,6 +298,14 @@
       background-color: #ccd5ae;
       color: white;
     }
+
+    .add-btn:hover {
+      filter: brightness(90%);
+    }
+
+    .add-btn.disable {
+      cursor: not-allowed;
+    }
   }
 
   .decision-panel {
@@ -360,7 +368,7 @@
       background-color: white;
       top: 25px;
       display: none;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
       border-radius: 4px;
     }
 
@@ -391,7 +399,8 @@
   }
 
   #due-date,
-  .priority {
+  .priority,
+  .flag-dropdown {
     border: 1px solid rgba($color: #000000, $alpha: 0.3);
   }
 }

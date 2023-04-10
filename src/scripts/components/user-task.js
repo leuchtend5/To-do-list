@@ -10,6 +10,10 @@ class UserTask extends LitElement {
     return this;
   }
 
+  set taskData(data) {
+    this._taskName = data.taskName;
+  }
+
   render() {
     return html`
       <div class="task-wrapper">
