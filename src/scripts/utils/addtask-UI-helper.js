@@ -1,5 +1,5 @@
-// import TaskData from '../data/task-data';
-// import TaskDataInInbox from '../data/task-data-inbox';
+import TaskData from '../data/task-data';
+import CollectTaskData from '../data/collect-task-data';
 import mediaQuery from './watch-media';
 
 const AddTaskUIHelper = {
@@ -7,6 +7,11 @@ const AddTaskUIHelper = {
     const cancelBtn = document.querySelector('.cancel-btn');
     const addBtn = document.querySelector('.add-btn');
     const flagDropdown = document.querySelector('.flag-dropdown');
+    const taskName = document.querySelector('#task-name');
+    const taskDescription = document.querySelector('#description');
+    const taskDate = document.querySelector('#due-date');
+
+    addBtn.disabled = true;
 
     this._addTaskToggle({
       addTask,
@@ -23,7 +28,28 @@ const AddTaskUIHelper = {
 
     this._watchMediaChange({ mediaQuery, cancelBtn, addBtn });
 
-    this._addTaskButton(addBtn);
+    this._watchUserInput({
+      element: taskName,
+      button: addBtn,
+    });
+
+    this._addTaskButton({
+      button: addBtn,
+      name: taskName.value,
+      date: taskDate.value,
+      description: taskDescription.value,
+    });
+    // const taskName = document.querySelector('#task-name');
+    // taskName.addEventListener('input', () => {
+    //   if (taskName.value === '') {
+    //     addBtn.disabled = true;
+    //     addBtn.classList.add('disable');
+    //   } else {
+    //     addBtn.disabled = false;
+    //     addBtn.classList.remove('disable');
+    //     this._addTaskButton(addBtn);
+    //   }
+    // });
   },
 
   _addTaskToggle({ addTask, inputBox, cancelBtn }) {
@@ -72,19 +98,26 @@ const AddTaskUIHelper = {
     });
   },
 
-  _addTaskButton(button) {
-    // const test = new TaskDataInInbox();
+  _watchUserInput({ element, button }) {
+    element.addEventListener('input', () => {
+      if (element.value !== '') {
+        button.disabled = false;
+        button.classList.remove('disable');
+      } else {
+        button.disabled = true;
+        button.classList.add('disable');
+      }
+    });
+  },
 
-    // button.disabled = true;
-    // button.classList.add('disable');
-    // button.addEventListener('click', () => {
-    //   button.disabled = false;
-    //   button.classList.remove('disable');
-    //   test.addNewTask(TaskData.userInputTaskData());
-    //   console.log(test.getAllTask());
-    // });
+  _addTaskButton({ button, name, date, description }) {
+    const test = new CollectTaskData();
+
     button.addEventListener('click', () => {
-      // console.log(TaskData.userInputTaskData().taskName);
+      if (!button.disabled) {
+        test.addNewTask(TaskData.userInputTaskData(name, date, description));
+        console.log(test.getAllTask());
+      }
     });
   },
 };

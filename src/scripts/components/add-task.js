@@ -59,7 +59,7 @@ class AddTask extends LitElement {
         <div class="decision-panel">
           <div class="yes-no-btn">
             <button class="cancel-btn">Cancel</button>
-            <button class="add-btn">Add Task</button>
+            <button class="add-btn disable">Add Task</button>
           </div>
         </div>
       </div>

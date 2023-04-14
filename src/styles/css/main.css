@@ -265,6 +265,10 @@ header .hamburger-menu {
 .main-content .yes-no-btn button {
   width: 70px;
 }
+.main-content .yes-no-btn .add-btn,
+.main-content .yes-no-btn .cancel-btn {
+  cursor: pointer;
+}
 .main-content .yes-no-btn .add-btn {
   background-color: #ccd5ae;
   color: white;
@@ -274,6 +278,10 @@ header .hamburger-menu {
 }
 .main-content .yes-no-btn .add-btn.disable {
   cursor: not-allowed;
+  opacity: 0.6;
+}
+.main-content .yes-no-btn .add-btn.disable:hover {
+  filter: brightness(100%);
 }
 .main-content .decision-panel {
   justify-content: flex-end;

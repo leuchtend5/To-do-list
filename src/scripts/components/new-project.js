@@ -11,8 +11,8 @@ class NewProject extends LitElement {
   }
 
   limitProjectName(projectName) {
-    if (projectName.length > 20) {
-      projectName = `${projectName.substring(0, 20)}...`;
+    if (projectName.length > 17) {
+      projectName = `${projectName.substring(0, 17)}...`;
       return projectName;
     }
     return projectName;

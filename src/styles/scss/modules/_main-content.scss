@@ -297,6 +297,11 @@
       width: 70px;
     }
 
+    .add-btn,
+    .cancel-btn {
+      cursor: pointer;
+    }
+
     .add-btn {
       background-color: #ccd5ae;
       color: white;
@@ -308,6 +313,11 @@
 
     .add-btn.disable {
       cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    .add-btn.disable:hover {
+      filter: brightness(100%);
     }
   }
 

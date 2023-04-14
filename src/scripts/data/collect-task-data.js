@@ -13,7 +13,7 @@
 //   },
 // };
 
-class TaskDataInInbox {
+class CollectTaskData {
   constructor() {
     this._allTask = [];
   }
@@ -28,4 +28,4 @@ class TaskDataInInbox {
   }
 }
 
-export default TaskDataInInbox;
+export default CollectTaskData;
