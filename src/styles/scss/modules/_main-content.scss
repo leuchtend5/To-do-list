@@ -6,7 +6,8 @@
   margin-top: var(--top-header);
 
   li:hover,
-  .project-group:hover {
+  .project-group:hover,
+  new-project:hover {
     background-color: rgba($color: #bab7b7, $alpha: 0.3);
   }
 
@@ -83,6 +84,7 @@
     margin-left: -306px;
     transition: margin-left 0.15s ease-in-out;
     top: calc(var(--top-header) - 1px);
+    z-index: 10;
 
     li {
       border-radius: 5px;
@@ -91,7 +93,7 @@
       }
     }
 
-    .project-list {
+    .project-wrapper {
       .project-group {
         display: flex;
         align-items: center;
@@ -106,11 +108,12 @@
         font-family: title-font;
       }
 
-      li {
-        flex-direction: row;
-        align-items: center;
+      new-project {
+        display: flex;
         justify-content: space-between;
+        align-items: center;
         padding: 8px;
+        border-radius: 5px;
       }
 
       .group-name {

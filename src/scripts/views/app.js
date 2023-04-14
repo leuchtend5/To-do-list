@@ -2,13 +2,26 @@ import DrawerInitiator from '../utils/drawer-initiator';
 import routes from '../routes/routes';
 import ObserveElement from '../utils/observe-element';
 import UrlParser from '../routes/url-parser';
+import AddProjectHelper from '../utils/addproject-helper';
+import OverlayInitiator from '../utils/overlay-initiator';
 
 class App {
-  constructor({ content, buttonHamburger, drawer, projectName }) {
+  constructor({
+    content,
+    buttonHamburger,
+    drawer,
+    addProjectBtn,
+    projectContainer,
+    projectCounter,
+    overlay,
+  }) {
     this._content = content;
     this._buttonHamburger = buttonHamburger;
     this._drawer = drawer;
-    this._projectName = projectName;
+    this._addProjectBtn = addProjectBtn;
+    this._container = projectContainer;
+    this._counter = projectCounter;
+    this._overlay = overlay;
 
     this._initialAppShell();
   }
@@ -17,8 +30,15 @@ class App {
     DrawerInitiator.init({
       button: this._buttonHamburger,
       drawer: this._drawer,
-      projectName: this._projectName,
     });
+
+    AddProjectHelper.init({
+      button: this._addProjectBtn,
+      container: this._container,
+      counter: this._counter,
+    });
+
+    OverlayInitiator.drawer(this._buttonHamburger, this._overlay);
   }
 
   async renderPage() {

@@ -54,16 +54,32 @@
             </li>
           </ul>
         </div>
-        <div class="project-list">
+        <div class="project-wrapper">
           <div class="project-group">
-            <p>Projects</p>
+            <p>Projects <span class="project-counter">(0/5)</span></p>
             <span><i class="fa-solid fa-plus"></i></span>
           </div>
-          <ul>
+          <div class="project-list">
+            <!-- <div class="new-project">
+              <div class="group-name">
+                <span>⏺</span>
+                <p class="project-name">Home</p>
+              </div>
+              <span class="total-tasks">13</span>
+            </div>
+            <div class="new-project">
+              <div class="group-name">
+                <span>⏺</span>
+                <p class="project-name">adasdadasdadasdadasadadadadadadqwdq</p>
+              </div>
+              <span class="total-tasks">13</span>
+            </div> -->
+          </div>
+          <!-- <ul>
             <li>
               <div class="group-name">
                 <span>⏺</span>
-                <p>Home</p>
+                <p>adasdadasdadasdadasadadadadadadqwdq</p>
               </div>
               <span class="total-tasks">13</span>
             </li>
@@ -74,7 +90,7 @@
               </div>
               <span class="total-tasks">13</span>
             </li>
-          </ul>
+          </ul> -->
         </div>
       </section>
       <section class="content">
@@ -157,5 +173,10 @@
       </section>
     </main>
     <div class="overlay"></div>
+    <div class="add-project-form">
+      <p>Add Project</p>
+      <input type="text" id="project-name" placeholder="Project Name" />
+      <button class="confirm-project-name-btn">Confirm</button>
+    </div>
   </body>
 </html>

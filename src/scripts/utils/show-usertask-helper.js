@@ -1,5 +1,5 @@
-const showTaskHelper = {
+const ShowTaskHelper = {
   init(parentElement, userTask) {},
 };
 
-export default showTaskHelper;
+export default ShowTaskHelper;

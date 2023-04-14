@@ -3,24 +3,23 @@ import '../styles/css/main.css';
 import App from './views/app';
 import ObserveElement from './utils/observe-element';
 
-const listProjectName = document.querySelectorAll('.project-list .group-name > p');
+const addNewProjectBtn = document.querySelector('.project-group .fa-plus');
 const hamburgerMenuBtn = document.querySelector('.hamburger-menu');
 const menuWrapper = document.querySelector('.all-menu');
 const header = document.querySelector('header');
-// const addTask = document.querySelector('.add-task');
-// const taskInputBox = document.querySelector('.task-input');
-// const priorityBtn = document.querySelector('.priority');
 const content = document.querySelector('.content');
-// const title = document.querySelector('.menu-title');
+const projectList = document.querySelector('.project-list');
+const projectCounter = document.querySelector('.project-counter');
+const overlay = document.querySelector('.overlay');
 
 const app = new App({
   content,
   buttonHamburger: hamburgerMenuBtn,
   drawer: menuWrapper,
-  // addTask,
-  // inputBox: taskInputBox,
-  // priority: priorityBtn,
-  projectName: listProjectName,
+  addProjectBtn: addNewProjectBtn,
+  projectContainer: projectList,
+  projectCounter,
+  overlay,
 });
 
 window.addEventListener('load', async () => {
@@ -29,16 +28,6 @@ window.addEventListener('load', async () => {
   const resizeHeaderHeight = new ResizeObserver(() => {
     ObserveElement.observeHeaderHeight(header);
   });
-  // const resizeTitleHeight = new ResizeObserver(() => {
-  //   ObserveElement.observeTitleHeight(title);
-  // });
-
-  // const resizeTitleWidth = new ResizeObserver(() => {
-  //   ObserveElement.observeTitleWidth(title);
-  // });
-
-  // resizeTitleHeight.observe(title);
-  // resizeTitleWidth.observe(title);
   resizeHeaderHeight.observe(header);
 });
 
@@ -48,15 +37,5 @@ window.addEventListener('hashchange', async () => {
   const resizeHeaderHeight = new ResizeObserver(() => {
     ObserveElement.observeHeaderHeight(header);
   });
-  // const resizeTitleHeight = new ResizeObserver(() => {
-  //   ObserveElement.observeTitleHeight(title);
-  // });
-
-  // const resizeTitleWidth = new ResizeObserver(() => {
-  //   ObserveElement.observeTitleWidth(title);
-  // });
-
-  // resizeTitleHeight.observe(title);
-  // resizeTitleWidth.observe(title);
   resizeHeaderHeight.observe(header);
 });

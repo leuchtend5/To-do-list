@@ -1,6 +1,6 @@
 import '../../components/user-task';
 import '../../components/add-task';
-import addTaskUIHelper from '../../utils/addtask-UI-helper';
+import AddTaskUIHelper from '../../utils/addtask-UI-helper';
 
 const InboxPage = {
   async render() {
@@ -22,7 +22,7 @@ const InboxPage = {
     const taskInputBox = addTask.querySelector('.task-input');
     const priorityBtn = addTask.querySelector('.priority');
 
-    addTaskUIHelper.init({
+    AddTaskUIHelper.init({
       addTask: addTaskSelector,
       inputBox: taskInputBox,
       priority: priorityBtn,

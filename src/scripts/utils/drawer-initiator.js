@@ -1,42 +1,27 @@
 const DrawerInitiator = {
-  init({ button, drawer, projectName }) {
-    const overlay = document.querySelector('.overlay');
+  init({ button, drawer }) {
     const content = document.querySelector('.content');
     let menuToggle = true;
 
-    button.addEventListener('click', (event) => {
+    button.addEventListener('click', () => {
       if (menuToggle) {
-        this._toggleDrawer(event, drawer);
-        overlay.classList.add('active');
+        this._toggleDrawer(drawer);
         content.classList.add('active');
         menuToggle = !menuToggle;
       } else {
-        this._closeDrawer(event, drawer);
-        overlay.classList.remove('active');
+        this._closeDrawer(drawer);
         content.classList.remove('active');
         menuToggle = !menuToggle;
       }
     });
-
-    this._limitProjectName(projectName);
   },
 
-  _toggleDrawer(event, drawer) {
-    event.stopPropagation();
+  _toggleDrawer(drawer) {
     drawer.classList.add('active');
   },
 
-  _closeDrawer(event, drawer) {
-    event.stopPropagation();
+  _closeDrawer(drawer) {
     drawer.classList.remove('active');
-  },
-
-  _limitProjectName(projectName) {
-    projectName.forEach((list) => {
-      if (list.textContent.length > 20) {
-        list.textContent = `${list.textContent.substring(0, 20)}...`;
-      }
-    });
   },
 };
 

@@ -1,12 +1,12 @@
-import TaskData from '../data/add-task-data';
-import TaskDataInInbox from '../data/task-data-inbox';
+// import TaskData from '../data/task-data';
+// import TaskDataInInbox from '../data/task-data-inbox';
+import mediaQuery from './watch-media';
 
-const addTaskUIHelper = {
+const AddTaskUIHelper = {
   init({ addTask, inputBox, priority }) {
     const cancelBtn = document.querySelector('.cancel-btn');
     const addBtn = document.querySelector('.add-btn');
     const flagDropdown = document.querySelector('.flag-dropdown');
-    const mediaQuery = window.matchMedia('(max-width: 680px)');
 
     this._addTaskToggle({
       addTask,
@@ -19,16 +19,11 @@ const addTaskUIHelper = {
     this._updateUI({
       cancelBtn,
       addBtn,
-      mediaQuery,
     });
 
     this._watchMediaChange({ mediaQuery, cancelBtn, addBtn });
 
-    if (TaskData.userInputTaskData().taskName === '') {
-      addBtn.disabled = true;
-    } else {
-      this._addTaskButton(addBtn);
-    }
+    this._addTaskButton(addBtn);
   },
 
   _addTaskToggle({ addTask, inputBox, cancelBtn }) {
@@ -57,7 +52,7 @@ const addTaskUIHelper = {
     });
   },
 
-  _updateUI({ cancelBtn, addBtn, mediaQuery }) {
+  _updateUI({ cancelBtn, addBtn }) {
     if (mediaQuery.matches) {
       cancelBtn.innerHTML = '<i class="fa-solid fa-x"></i>';
       addBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i>';
@@ -67,7 +62,7 @@ const addTaskUIHelper = {
     }
   },
 
-  _watchMediaChange({ mediaQuery, cancelBtn, addBtn }) {
+  _watchMediaChange({ cancelBtn, addBtn }) {
     mediaQuery.addEventListener('change', () => {
       this._updateUI({
         cancelBtn,
@@ -78,7 +73,7 @@ const addTaskUIHelper = {
   },
 
   _addTaskButton(button) {
-    const test = new TaskDataInInbox();
+    // const test = new TaskDataInInbox();
 
     // button.disabled = true;
     // button.classList.add('disable');
@@ -94,4 +89,4 @@ const addTaskUIHelper = {
   },
 };
 
-export default addTaskUIHelper;
+export default AddTaskUIHelper;
