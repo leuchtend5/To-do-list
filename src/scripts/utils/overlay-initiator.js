@@ -21,6 +21,8 @@ const OverlayInitiator = {
       }
     });
   },
+
+  overlayForm() {},
 };
 
 export default OverlayInitiator;

@@ -14,6 +14,10 @@ class App {
     projectContainer,
     projectCounter,
     overlay,
+    projectForm,
+    confirmNewProjectBtn,
+    cancelNewProjectBtn,
+    userInputNewProjectName,
   }) {
     this._content = content;
     this._buttonHamburger = buttonHamburger;
@@ -22,6 +26,10 @@ class App {
     this._container = projectContainer;
     this._counter = projectCounter;
     this._overlay = overlay;
+    this._projectForm = projectForm;
+    this._confirmNewProjectBtn = confirmNewProjectBtn;
+    this._cancelNewProjectBtn = cancelNewProjectBtn;
+    this._userInputNewProjectName = userInputNewProjectName;
 
     this._initialAppShell();
   }
@@ -33,9 +41,14 @@ class App {
     });
 
     AddProjectHelper.init({
-      button: this._addProjectBtn,
+      addButton: this._addProjectBtn,
       container: this._container,
       counter: this._counter,
+      projectForm: this._projectForm,
+      overlay: this._overlay,
+      confirmButton: this._confirmNewProjectBtn,
+      cancelButton: this._cancelNewProjectBtn,
+      userInput: this._userInputNewProjectName,
     });
 
     OverlayInitiator.drawer(this._buttonHamburger, this._overlay);
@@ -47,6 +60,7 @@ class App {
     this._content.innerHTML = await page.render();
     const title = document.querySelector('.menu-title');
     await page.afterRender();
+
     const resizeTitleHeight = new ResizeObserver(() => {
       ObserveElement.observeTitleHeight(title);
     });

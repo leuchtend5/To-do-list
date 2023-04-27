@@ -25,25 +25,73 @@ body {
 }
 
 .add-project-form {
-  background-color: gray;
+  background-color: white;
   width: 300px;
-  height: 100px;
+  height: 110px;
   display: none;
   flex-direction: column;
-  padding: 10px;
-  gap: 10px;
+  padding: 16px;
+  gap: 14px;
   position: absolute;
-  top: calc((50% - 60px));
-  left: calc(50% - 160px);
+  top: calc(50% - 71px);
+  left: calc(50% - 166px);
+  border-radius: 8px;
+  z-index: 15;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 
   p {
     text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
   }
 
   button {
     align-self: center;
     width: 80px;
+    border: none;
+    font-size: 0.9rem;
+    padding: 7px;
+    border-radius: 5px;
+    cursor: pointer;
   }
+
+  button:hover {
+    filter: brightness(90%);
+  }
+
+  button:active {
+    filter: brightness(80%);
+  }
+
+  .add-project-name-btn {
+    background-color: #ccd5ae;
+  }
+
+  #project-name {
+    border: 1px solid black;
+    padding: 8px;
+    outline: none;
+    border-radius: 6px;
+  }
+
+  .button-wrap {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+  }
+
+  .add-project-name-btn.disable {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .add-project-name-btn.disable:hover {
+    filter: brightness(100%);
+  }
+}
+
+.add-project-form.active {
+  display: flex;
 }
 
 .overlay {

@@ -18,12 +18,12 @@ class CollectTaskData {
     this._allTask = [];
   }
 
-  addNewTask(data) {
+  static addNewTask(data) {
     this._allTask.push(data);
     return this._allTask;
   }
 
-  getAllTask() {
+  static getAllTask() {
     return this._allTask;
   }
 }

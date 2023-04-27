@@ -11,6 +11,10 @@ const content = document.querySelector('.content');
 const projectList = document.querySelector('.project-list');
 const projectCounter = document.querySelector('.project-counter');
 const overlay = document.querySelector('.overlay');
+const newProjectForm = document.querySelector('.add-project-form');
+const confirmNewProjectBtn = document.querySelector('.add-project-name-btn');
+const cancelNewProjectBtn = document.querySelector('.cancel-project-name-btn');
+const userInputNewProjectName = document.querySelector('#project-name');
 
 const app = new App({
   content,
@@ -20,22 +24,31 @@ const app = new App({
   projectContainer: projectList,
   projectCounter,
   overlay,
+  projectForm: newProjectForm,
+  confirmNewProjectBtn,
+  cancelNewProjectBtn,
+  userInputNewProjectName,
 });
+
+const resizeHeaderHeight = new ResizeObserver(() => {
+  ObserveElement.observeHeaderHeight(header);
+});
+resizeHeaderHeight.observe(header);
 
 window.addEventListener('load', async () => {
   await app.renderPage();
 
-  const resizeHeaderHeight = new ResizeObserver(() => {
-    ObserveElement.observeHeaderHeight(header);
-  });
-  resizeHeaderHeight.observe(header);
+  // const resizeHeaderHeight = new ResizeObserver(() => {
+  //   ObserveElement.observeHeaderHeight(header);
+  // });
+  // resizeHeaderHeight.observe(header);
 });
 
 window.addEventListener('hashchange', async () => {
   await app.renderPage();
 
-  const resizeHeaderHeight = new ResizeObserver(() => {
-    ObserveElement.observeHeaderHeight(header);
-  });
-  resizeHeaderHeight.observe(header);
+  // const resizeHeaderHeight = new ResizeObserver(() => {
+  //   ObserveElement.observeHeaderHeight(header);
+  // });
+  // resizeHeaderHeight.observe(header);
 });
