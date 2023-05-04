@@ -1,4 +1,5 @@
-import CollectProjectData from '../data/collect-project-data';
+import CreateNewProject from '../data/create-new-project';
+import CollectAllProjects from '../data/collect-all-projects';
 import '../components/new-project';
 
 const AddProjectHelper = {
@@ -13,7 +14,6 @@ const AddProjectHelper = {
     userInput,
   }) {
     let totalProject = 0;
-    const projects = new CollectProjectData();
 
     this._buttonDisable(confirmButton);
 
@@ -28,8 +28,10 @@ const AddProjectHelper = {
 
     confirmButton.addEventListener('click', () => {
       if (totalProject < 5) {
-        projects.addNewProject(userInput.value);
-        console.log(projects.getAllProjects());
+        const project = new CreateNewProject(userInput.value);
+        CollectAllProjects.addNewProject(project);
+        localStorage.setItem('projects', JSON.stringify(CollectAllProjects.allProjects));
+
         this._addNewProjectFunction({
           container,
           counter,
@@ -39,7 +41,9 @@ const AddProjectHelper = {
         totalProject += 1;
         counter.textContent = `(${totalProject}/5)`;
 
+        // back to default UI
         this._newProjectFormOff(projectForm, overlay);
+        this._buttonDisable(confirmButton);
       }
     });
 
@@ -55,7 +59,7 @@ const AddProjectHelper = {
   _newProjectFormActive(projectForm, overlay) {
     projectForm.classList.add('active');
     overlay.classList.add('active');
-    overlay.style.zIndex = '11';
+    overlay.style.zIndex = '24';
   },
 
   _newProjectFormOff(projectForm, overlay) {

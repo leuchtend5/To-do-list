@@ -111,12 +111,18 @@ header .hamburger-menu {
   font-size: 1.1rem;
   font-family: title-font;
 }
+.main-content .all-menu .project-wrapper .fa-plus:hover {
+  opacity: 1;
+}
 .main-content .all-menu .project-wrapper new-project {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8px;
   border-radius: 5px;
+}
+.main-content .all-menu .project-wrapper new-project .edit-project {
+  display: none;
 }
 .main-content .all-menu .project-wrapper .group-name span {
   opacity: 0.5;
@@ -181,22 +187,24 @@ header .hamburger-menu {
 .main-content .user-tasks .task-wrapper .edit-panel {
   display: none;
 }
-.main-content .user-tasks .task-wrapper .edit-panel .edit-btn,
-.main-content .user-tasks .task-wrapper .edit-panel .delete-btn {
+.main-content .user-tasks .task-wrapper .edit-panel button {
+  border: none;
+  background-color: transparent;
   opacity: 0.5;
+  cursor: pointer;
 }
-.main-content .user-tasks .task-wrapper .edit-panel .edit-btn:hover,
-.main-content .user-tasks .task-wrapper .edit-panel .delete-btn:hover {
+.main-content .user-tasks .task-wrapper .edit-panel button:hover {
   opacity: 1;
+}
+.main-content .user-tasks .task-wrapper .edit-panel .fa-pen-to-square,
+.main-content .user-tasks .task-wrapper .edit-panel .fa-trash {
+  font-size: 1.1rem;
 }
 .main-content .user-tasks .task-wrapper:hover .edit-panel {
   display: flex;
   position: absolute;
   right: 0;
   gap: 10px;
-  font-size: 1.1rem;
-  background-color: white;
-  cursor: pointer;
 }
 .main-content .user-tasks span {
   font-size: 1.2rem;
@@ -417,7 +425,7 @@ body {
   top: calc(50% - 71px);
   left: calc(50% - 166px);
   border-radius: 8px;
-  z-index: 15;
+  z-index: 25;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
 }
 .add-project-form p {

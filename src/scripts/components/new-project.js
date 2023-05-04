@@ -23,14 +23,13 @@ class NewProject extends LitElement {
   }
 
   render() {
-    // const checkProjectNameLength = this.limitProjectName('adasdadasdadasdadasadadadadadadqwdq');
-
     return html`
       <div class="group-name">
         <span>⏺</span>
         <p class="project-name">${this.limitProjectName()}</p>
       </div>
       <span class="total-tasks">13</span>
+      <div class="edit-project"></div>
     `;
   }
 }

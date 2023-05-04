@@ -108,12 +108,20 @@
         font-family: title-font;
       }
 
+      .fa-plus:hover {
+        opacity: 1;
+      }
+
       new-project {
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 8px;
         border-radius: 5px;
+
+        .edit-project {
+          display: none;
+        }
       }
 
       .group-name {
@@ -192,15 +200,32 @@
       .edit-panel {
         display: none;
 
-        .edit-btn,
-        .delete-btn {
+        button {
+          border: none;
+          background-color: transparent;
           opacity: 0.5;
+          cursor: pointer;
         }
 
-        .edit-btn:hover,
-        .delete-btn:hover {
+        button:hover {
           opacity: 1;
         }
+
+        .fa-pen-to-square,
+        .fa-trash {
+          font-size: 1.1rem;
+        }
+
+        // .edit-btn,
+        // .delete-btn {
+        //   opacity: 0.5;
+        // }
+
+        // .edit-btn:hover,
+        // .delete-btn:hover {
+        //   opacity: 1;
+        //   background-color: none;
+        // }
       }
     }
 
@@ -209,9 +234,8 @@
       position: absolute;
       right: 0;
       gap: 10px;
-      font-size: 1.1rem;
-      background-color: white;
-      cursor: pointer;
+      // font-size: 1.1rem;
+      // background-color: white;
     }
 
     span {

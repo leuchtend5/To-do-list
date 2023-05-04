@@ -1,6 +1,8 @@
 import '../../components/user-task';
 import '../../components/add-task';
 import AddTaskUIHelper from '../../utils/addtask-UI-helper';
+import ShowTaskHelper from '../../utils/show-usertask-helper';
+import CollectAllProjects from '../../data/collect-all-projects';
 
 const InboxPage = {
   async render() {
@@ -21,12 +23,17 @@ const InboxPage = {
     const addTaskSelector = addTask.querySelector('.add-task');
     const taskInputBox = addTask.querySelector('.task-input');
     const priorityBtn = addTask.querySelector('.priority');
+    const title = document.querySelector('.menu-title').textContent.toLowerCase();
 
     AddTaskUIHelper.init({
       addTask: addTaskSelector,
       inputBox: taskInputBox,
       priority: priorityBtn,
+      title,
+      taskContainer: userTasks,
     });
+
+    ShowTaskHelper.showAllTask(userTasks, CollectAllProjects.findProject(title).allTasks);
   },
 };
 

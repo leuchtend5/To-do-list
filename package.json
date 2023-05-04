@@ -43,6 +43,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "nanoid": "^4.0.2",
     "regenerator-runtime": "^0.13.11"
   }
 }

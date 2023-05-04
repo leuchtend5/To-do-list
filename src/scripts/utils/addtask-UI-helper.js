@@ -1,9 +1,10 @@
-import TaskData from '../data/task-data';
-import CollectTaskData from '../data/collect-task-data';
+import CollectAllProjects from '../data/collect-all-projects';
+import CreateNewTask from '../data/create-new-task';
 import mediaQuery from './watch-media';
+import ShowTaskHelper from './show-usertask-helper';
 
 const AddTaskUIHelper = {
-  init({ addTask, inputBox, priority }) {
+  init({ addTask, inputBox, priority, title, taskContainer }) {
     const cancelBtn = document.querySelector('.cancel-btn');
     const addBtn = document.querySelector('.add-btn');
     const flagDropdown = document.querySelector('.flag-dropdown');
@@ -35,21 +36,12 @@ const AddTaskUIHelper = {
 
     this._addTaskButton({
       button: addBtn,
-      name: taskName.value,
-      date: taskDate.value,
-      description: taskDescription.value,
+      name: taskName,
+      date: taskDate,
+      description: taskDescription,
+      title,
+      taskContainer,
     });
-    // const taskName = document.querySelector('#task-name');
-    // taskName.addEventListener('input', () => {
-    //   if (taskName.value === '') {
-    //     addBtn.disabled = true;
-    //     addBtn.classList.add('disable');
-    //   } else {
-    //     addBtn.disabled = false;
-    //     addBtn.classList.remove('disable');
-    //     this._addTaskButton(addBtn);
-    //   }
-    // });
   },
 
   _addTaskToggle({ addTask, inputBox, cancelBtn }) {
@@ -110,14 +102,30 @@ const AddTaskUIHelper = {
     });
   },
 
-  _addTaskButton({ button, name, date, description }) {
-    const test = new CollectTaskData();
-
+  _addTaskButton({ button, name, date, description, title, taskContainer }) {
     button.addEventListener('click', () => {
       if (!button.disabled) {
-        test.addNewTask(TaskData.userInputTaskData(name, date, description));
-        console.log(test.getAllTask());
+        const foundProject = CollectAllProjects.findProject(title);
+
+        foundProject.setNewTask(
+          new CreateNewTask({
+            name: name.value,
+            date: date.value,
+            description: description.value,
+          }),
+        );
+
+        // add latest task to the page
+        const lastIndex = foundProject.allTasks.length - 1;
+        ShowTaskHelper.showTask(taskContainer, foundProject.allTasks[lastIndex]);
       }
+
+      // reset add task form UI
+      name.value = '';
+      date.value = '';
+      description.value = '';
+      button.disabled = true;
+      button.classList.add('disable');
     });
   },
 };

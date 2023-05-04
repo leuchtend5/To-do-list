@@ -22,6 +22,8 @@
     "class-methods-use-this": "off",
     "no-useless-constructor": "off",
     "operator-linebreak": "off",
-    "consistent-return": "off"
+    "consistent-return": "off",
+    "implicit-arrow-linebreak": "off",
+    "function-paren-newline": "off"
   }
 }
