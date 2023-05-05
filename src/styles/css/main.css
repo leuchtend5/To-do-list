@@ -160,11 +160,12 @@ header .hamburger-menu {
 .main-content .user-tasks {
   margin-top: var(--top-title);
   width: var(--width-title);
-  padding-bottom: 10px;
 }
 .main-content .user-tasks .task-wrapper {
   display: flex;
   gap: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 10px 0;
 }
 .main-content .user-tasks .task-wrapper > div {
   display: flex;
@@ -172,7 +173,6 @@ header .hamburger-menu {
   gap: 8px;
   position: relative;
   width: 100%;
-  margin-bottom: 10px;
 }
 .main-content .user-tasks .task-wrapper .task-date {
   display: flex;
@@ -216,7 +216,6 @@ header .hamburger-menu {
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 10px 0;
 }
 .main-content .add-task p {

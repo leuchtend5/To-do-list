@@ -13,6 +13,7 @@ class UserTask extends LitElement {
 
   firstUpdated() {
     this._deleteTask();
+    this._dateUI();
   }
 
   set taskData(data) {
@@ -33,6 +34,17 @@ class UserTask extends LitElement {
     });
   }
 
+  _dateUI() {
+    const userTaskDueDate = this.querySelector('.task-due-date');
+    const taskDateContainer = this.querySelector('.task-date');
+
+    if (userTaskDueDate.textContent === '') {
+      taskDateContainer.style.display = 'none';
+    } else {
+      taskDateContainer.style.display = 'flex';
+    }
+  }
+
   render() {
     return html`
       <div class="task-wrapper">
@@ -42,7 +54,7 @@ class UserTask extends LitElement {
           <p class="task-desc">${this._taskDescription}</p>
           <div class="task-date">
             <i class="fa-regular fa-calendar"></i>
-            <p>${this._taskDate}</p>
+            <p class="task-due-date">${this._taskDate}</p>
           </div>
           <div class="edit-panel">
             <button class="edit-btn">
