@@ -1,4 +1,5 @@
 import CollectAllProjects from '../data/collect-all-projects';
+import CollectAllTask from '../data/collect-all-tasks';
 import CreateNewTask from '../data/create-new-task';
 import mediaQuery from './watch-media';
 import ShowTaskHelper from './show-usertask-helper';
@@ -106,18 +107,35 @@ const AddTaskUIHelper = {
     button.addEventListener('click', () => {
       if (!button.disabled) {
         const foundProject = CollectAllProjects.findProject(title);
+        const newTask = new CreateNewTask({
+          name: name.value,
+          date: date.value,
+          description: description.value,
+        });
 
-        foundProject.setNewTask(
-          new CreateNewTask({
-            name: name.value,
-            date: date.value,
-            description: description.value,
-          }),
-        );
+        foundProject.setNewTask(newTask);
+        CollectAllTask.addNewTask(newTask);
+        ShowTaskHelper.showTask(taskContainer, newTask);
 
-        // add latest task to the page
-        const lastIndex = foundProject.allTasks.length - 1;
-        ShowTaskHelper.showTask(taskContainer, foundProject.allTasks[lastIndex]);
+        //   if (title !== '') {
+        //     const newTask = new CreateNewTask({
+        //       name: name.value,
+        //       date: this._formatDate(date.value),
+        //       description: description.value,
+        //     });
+        //     const foundProject = CollectAllProjects.findProject(title);
+        //     foundProject.setNewTask(newTask);
+        //     CollectAllTask.addNewTask(newTask);
+        //     ShowTaskHelper.showTask(taskContainer, newTask);
+        //   } else {
+        //     const newTask = new CreateNewTask({
+        //       name: name.value,
+        //       date: this._formatDate(date.value),
+        //       description: description.value,
+        //     });
+        //     CollectAllTask.addNewTask(newTask);
+        //     ShowTaskHelper.showTask(taskContainer, newTask);
+        //   }
       }
 
       // reset add task form UI
@@ -128,6 +146,15 @@ const AddTaskUIHelper = {
       button.classList.add('disable');
     });
   },
+
+  // _formatDate(date) {
+  //   if (date !== '') {
+  //     const newDate = date.replace(/-/g, ', ');
+  //     const newFormatDate = format(new Date(newDate), 'dd MMMM yyyy');
+  //     return newFormatDate;
+  //   }
+  //   return date;
+  // },
 };
 
 export default AddTaskUIHelper;

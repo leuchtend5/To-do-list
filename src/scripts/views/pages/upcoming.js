@@ -1,4 +1,5 @@
-import AddTaskUIHelper from '../../utils/addtask-UI-helper';
+import ShowTaskHelper from '../../utils/show-usertask-helper';
+import CollectAllTask from '../../data/collect-all-tasks';
 
 const UpcomingPage = {
   async render() {
@@ -11,22 +12,7 @@ const UpcomingPage = {
 
   async afterRender() {
     const userTasks = document.querySelector('.user-tasks');
-
-    const userTask = document.createElement('user-task');
-    const addTask = document.createElement('add-task');
-    userTasks.appendChild(userTask);
-    userTask.insertAdjacentElement('afterend', addTask);
-
-    await customElements.whenDefined('add-task');
-    const addTaskSelector = addTask.querySelector('.add-task');
-    const taskInputBox = addTask.querySelector('.task-input');
-    const priorityBtn = addTask.querySelector('.priority');
-
-    AddTaskUIHelper.init({
-      addTask: addTaskSelector,
-      inputBox: taskInputBox,
-      priority: priorityBtn,
-    });
+    ShowTaskHelper.showAllTask(userTasks, CollectAllTask.filterByUpcoming());
   },
 };
 

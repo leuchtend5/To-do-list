@@ -1,5 +1,7 @@
 import { LitElement, html } from 'lit';
+import { format } from 'date-fns';
 import CollectAllProjects from '../data/collect-all-projects';
+import CollectAllTask from '../data/collect-all-tasks';
 
 class UserTask extends LitElement {
   constructor() {
@@ -25,11 +27,16 @@ class UserTask extends LitElement {
 
   _deleteTask() {
     this.querySelector('.delete-btn').addEventListener('click', () => {
-      // find project that contain the target ID
-      const findProject = CollectAllProjects.allProjects.find((project) =>
+      // delete task from project instance
+      // find project that contain the task ID
+      const findTask = CollectAllProjects.allProjects.find((project) =>
         project.allTasks.some((task) => task.id === this._taskId),
       );
-      findProject.deleteTask(this._taskId);
+      findTask.deleteTask(this._taskId);
+
+      // delete task from allTask static class
+      CollectAllTask.deleteTask(this._taskId);
+
       this.remove();
     });
   }
@@ -45,6 +52,15 @@ class UserTask extends LitElement {
     }
   }
 
+  _formattedDate() {
+    if (this._taskDate !== '') {
+      const newDate = this._taskDate.replace(/-/g, ', ');
+      const newFormatDate = format(new Date(newDate), 'dd MMMM yyyy');
+      return newFormatDate;
+    }
+    return this._taskDate;
+  }
+
   render() {
     return html`
       <div class="task-wrapper">
@@ -54,7 +70,7 @@ class UserTask extends LitElement {
           <p class="task-desc">${this._taskDescription}</p>
           <div class="task-date">
             <i class="fa-regular fa-calendar"></i>
-            <p class="task-due-date">${this._taskDate}</p>
+            <p class="task-due-date">${this._formattedDate()}</p>
           </div>
           <div class="edit-panel">
             <button class="edit-btn">

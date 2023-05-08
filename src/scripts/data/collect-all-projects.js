@@ -1,7 +1,7 @@
 import CreateNewProject from './create-new-project';
 
 class CollectAllProjects {
-  static allProjects = [new CreateNewProject('inbox'), new CreateNewProject('today')];
+  static allProjects = [new CreateNewProject('inbox')];
 
   static addNewProject(data) {
     this.allProjects.push(data);
