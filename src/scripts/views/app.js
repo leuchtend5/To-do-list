@@ -4,6 +4,7 @@ import ObserveElement from '../utils/observe-element';
 import UrlParser from '../routes/url-parser';
 import AddProjectHelper from '../utils/addproject-helper';
 import OverlayInitiator from '../utils/overlay-initiator';
+import TaskCounter from '../utils/task-counter';
 
 class App {
   constructor({
@@ -52,6 +53,9 @@ class App {
     });
 
     OverlayInitiator.drawer(this._buttonHamburger, this._overlay);
+
+    // to update task counter
+    TaskCounter.init();
   }
 
   async renderPage() {

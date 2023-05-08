@@ -2,13 +2,14 @@ import { LitElement, html } from 'lit';
 import { format } from 'date-fns';
 import CollectAllProjects from '../data/collect-all-projects';
 import CollectAllTask from '../data/collect-all-tasks';
+import TaskCounter from '../utils/task-counter';
 
 class UserTask extends LitElement {
   constructor() {
     super();
   }
 
-  // DISABLE SHADOW DOM
+  // disable shadow DOM
   createRenderRoot() {
     return this;
   }
@@ -38,6 +39,7 @@ class UserTask extends LitElement {
       CollectAllTask.deleteTask(this._taskId);
 
       this.remove();
+      TaskCounter.init();
     });
   }
 

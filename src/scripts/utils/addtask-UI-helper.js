@@ -3,6 +3,7 @@ import CollectAllTask from '../data/collect-all-tasks';
 import CreateNewTask from '../data/create-new-task';
 import mediaQuery from './watch-media';
 import ShowTaskHelper from './show-usertask-helper';
+import TaskCounter from './task-counter';
 
 const AddTaskUIHelper = {
   init({ addTask, inputBox, priority, title, taskContainer }) {
@@ -116,6 +117,7 @@ const AddTaskUIHelper = {
         foundProject.setNewTask(newTask);
         CollectAllTask.addNewTask(newTask);
         ShowTaskHelper.showTask(taskContainer, newTask);
+        TaskCounter.init();
 
         //   if (title !== '') {
         //     const newTask = new CreateNewTask({
