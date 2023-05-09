@@ -14,11 +14,14 @@ const UrlParser = {
     const urlsSplits = url.split('/');
     return {
       resource: urlsSplits[1] || null,
+      name: urlsSplits[2] || null,
     };
   },
 
   _urlCombiner(splitedUrl) {
-    return splitedUrl.resource ? `/${splitedUrl.resource}` : '/';
+    return (
+      (splitedUrl.resource ? `/${splitedUrl.resource}` : '/') + (splitedUrl.name ? '/:name' : '')
+    );
   },
 };
 

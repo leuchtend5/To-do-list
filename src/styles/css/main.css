@@ -27,7 +27,7 @@ header .hamburger-menu {
 }
 .main-content li:hover,
 .main-content .project-group:hover,
-.main-content new-project:hover {
+.main-content new-project > a:hover {
   background-color: rgba(186, 183, 183, 0.3);
 }
 .main-content a:link {
@@ -114,15 +114,18 @@ header .hamburger-menu {
 .main-content .all-menu .project-wrapper .fa-plus:hover {
   opacity: 1;
 }
-.main-content .all-menu .project-wrapper new-project {
+.main-content .all-menu .project-wrapper new-project > a {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8px;
   border-radius: 5px;
 }
-.main-content .all-menu .project-wrapper new-project .edit-project {
+.main-content .all-menu .project-wrapper new-project > a .edit-project {
   display: none;
+}
+.main-content .all-menu .project-wrapper new-project > a:link {
+  color: black;
 }
 .main-content .all-menu .project-wrapper .group-name span {
   opacity: 0.5;

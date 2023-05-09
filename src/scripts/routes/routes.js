@@ -2,6 +2,7 @@ import InboxPage from '../views/pages/inbox';
 import TodayPage from '../views/pages/today';
 import UpcomingPage from '../views/pages/upcoming';
 import CompletedTasksPage from '../views/pages/completed-tasks';
+import ProjectPage from '../views/pages/project';
 
 const routes = {
   '/': TodayPage,
@@ -9,6 +10,7 @@ const routes = {
   '/today': TodayPage,
   '/upcoming': UpcomingPage,
   '/completed': CompletedTasksPage,
+  '/project/:name': ProjectPage,
 };
 
 export default routes;

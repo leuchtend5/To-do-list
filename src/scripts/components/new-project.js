@@ -24,12 +24,14 @@ class NewProject extends LitElement {
 
   render() {
     return html`
-      <div class="group-name">
-        <span>⏺</span>
-        <p class="project-name">${this.limitProjectName()}</p>
-      </div>
-      <span class="total-tasks">13</span>
-      <div class="edit-project"></div>
+      <a href="#/project/${this._newProjectName}">
+        <div class="group-name">
+          <span>⏺</span>
+          <p class="project-name">${this.limitProjectName()}</p>
+        </div>
+        <span class="total-tasks">13</span>
+        <div class="edit-project"></div>
+      </a>
     `;
   }
 }

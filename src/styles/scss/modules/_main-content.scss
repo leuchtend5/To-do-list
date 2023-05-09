@@ -7,7 +7,7 @@
 
   li:hover,
   .project-group:hover,
-  new-project:hover {
+  new-project > a:hover {
     background-color: rgba($color: #bab7b7, $alpha: 0.3);
   }
 
@@ -112,7 +112,7 @@
         opacity: 1;
       }
 
-      new-project {
+      new-project > a {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -122,6 +122,10 @@
         .edit-project {
           display: none;
         }
+      }
+
+      new-project > a:link {
+        color: black;
       }
 
       .group-name {
