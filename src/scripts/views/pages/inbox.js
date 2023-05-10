@@ -33,7 +33,7 @@ const InboxPage = {
       taskContainer: userTasks,
     });
 
-    ShowTaskHelper.showAllTask(userTasks, CollectAllProjects.findProject(title).allTasks);
+    ShowTaskHelper.showAllTask(userTasks, CollectAllProjects.findProjectByName(title).allTasks);
   },
 };
 

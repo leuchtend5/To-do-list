@@ -20,6 +20,7 @@ const AddTaskUIHelper = {
       addTask,
       inputBox,
       cancelBtn,
+      taskName,
     });
 
     this._priorityToggle(priority, flagDropdown);
@@ -46,10 +47,16 @@ const AddTaskUIHelper = {
     });
   },
 
-  _addTaskToggle({ addTask, inputBox, cancelBtn }) {
+  _addTaskToggle({ addTask, inputBox, cancelBtn, taskName }) {
     addTask.addEventListener('click', () => {
       inputBox.classList.add('active');
       addTask.classList.add('nonactive');
+
+      // to delay the autofocus
+      // so the autofocus will active after element inserted to DOM
+      setTimeout(() => {
+        taskName.focus();
+      }, 0);
     });
 
     cancelBtn.addEventListener('click', () => {
@@ -107,7 +114,7 @@ const AddTaskUIHelper = {
   _addTaskButton({ button, name, date, description, title, taskContainer }) {
     button.addEventListener('click', () => {
       if (!button.disabled) {
-        const foundProject = CollectAllProjects.findProject(title);
+        const foundProject = CollectAllProjects.findProjectByName(title);
         const newTask = new CreateNewTask({
           name: name.value,
           date: date.value,
@@ -118,26 +125,6 @@ const AddTaskUIHelper = {
         CollectAllTask.addNewTask(newTask);
         ShowTaskHelper.showTask(taskContainer, newTask);
         TaskCounter.init();
-
-        //   if (title !== '') {
-        //     const newTask = new CreateNewTask({
-        //       name: name.value,
-        //       date: this._formatDate(date.value),
-        //       description: description.value,
-        //     });
-        //     const foundProject = CollectAllProjects.findProject(title);
-        //     foundProject.setNewTask(newTask);
-        //     CollectAllTask.addNewTask(newTask);
-        //     ShowTaskHelper.showTask(taskContainer, newTask);
-        //   } else {
-        //     const newTask = new CreateNewTask({
-        //       name: name.value,
-        //       date: this._formatDate(date.value),
-        //       description: description.value,
-        //     });
-        //     CollectAllTask.addNewTask(newTask);
-        //     ShowTaskHelper.showTask(taskContainer, newTask);
-        //   }
       }
 
       // reset add task form UI
@@ -146,17 +133,11 @@ const AddTaskUIHelper = {
       description.value = '';
       button.disabled = true;
       button.classList.add('disable');
+      setTimeout(() => {
+        name.focus();
+      }, 0);
     });
   },
-
-  // _formatDate(date) {
-  //   if (date !== '') {
-  //     const newDate = date.replace(/-/g, ', ');
-  //     const newFormatDate = format(new Date(newDate), 'dd MMMM yyyy');
-  //     return newFormatDate;
-  //   }
-  //   return date;
-  // },
 };
 
 export default AddTaskUIHelper;

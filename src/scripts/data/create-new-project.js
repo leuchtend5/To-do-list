@@ -1,20 +1,8 @@
-// class CollectProjectData {
-//   static allProjects = [];
-
-//   static addNewProject(data) {
-//     this._allProjects.push(data);
-//     return this._allProjects;
-//   }
-
-//   static getAllProjects() {
-//     return this._allProjects;
-//   }
-// }
-
-// export default CollectProjectData;
+import { nanoid } from 'nanoid';
 
 class CreateNewProject {
   constructor(name) {
+    this.id = nanoid();
     this.projectName = name;
     this.allTasks = [];
   }

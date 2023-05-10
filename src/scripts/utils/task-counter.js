@@ -7,11 +7,12 @@ const TaskCounter = {
     this._taskCounterInbox();
     this._taskCounterToday();
     this._taskCounterUpcoming();
+    this._taskCounterEachProject();
   },
 
   _taskCounterInbox() {
     const counterElement = document.querySelector('.total-tasks.inbox');
-    const foundProject = CollectAllProjects.findProject('inbox');
+    const foundProject = CollectAllProjects.findProjectByName('inbox');
 
     this._updateUI(foundProject.allTasks, counterElement);
   },
@@ -29,6 +30,21 @@ const TaskCounter = {
     const counterElement = document.querySelector('.total-tasks.upcoming');
 
     this._updateUI(CollectAllTask.filterByUpcoming(), counterElement);
+  },
+
+  _taskCounterEachProject() {
+    const projectList = document.querySelector('.project-list');
+
+    // iterate array all project and select total task element
+    // then find the project by their name
+    if (projectList.children.length !== 0) {
+      const projectElement = document.querySelectorAll('new-project');
+      projectElement.forEach((project) => {
+        const totalTasks = project.querySelector('.total-tasks');
+        const foundProject = CollectAllProjects.findProjectByName(project.getProjectName);
+        totalTasks.textContent = foundProject.allTasks.length;
+      });
+    }
   },
 
   _updateUI(project, element) {

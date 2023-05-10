@@ -10,7 +10,7 @@ const routes = {
   '/today': TodayPage,
   '/upcoming': UpcomingPage,
   '/completed': CompletedTasksPage,
-  '/project/:name': ProjectPage,
+  '/project/:id': ProjectPage,
 };
 
 export default routes;

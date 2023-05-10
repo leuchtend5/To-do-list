@@ -19,6 +19,13 @@ const AddProjectHelper = {
 
     addButton.addEventListener('click', () => {
       userInput.value = '';
+
+      // to delay the autofocus
+      // so the autofocus will active after element inserted to DOM
+      setTimeout(() => {
+        userInput.focus();
+      }, 0);
+
       this._newProjectFormActive(projectForm, overlay);
     });
 
@@ -30,12 +37,12 @@ const AddProjectHelper = {
       if (totalProject < 5) {
         const project = new CreateNewProject(userInput.value);
         CollectAllProjects.addNewProject(project);
-        localStorage.setItem('projects', JSON.stringify(CollectAllProjects.allProjects));
+        // localStorage.setItem('projects', JSON.stringify(CollectAllProjects.allProjects));
 
         this._addNewProjectFunction({
           container,
           counter,
-          value: userInput.value,
+          value: project,
         });
 
         totalProject += 1;
@@ -80,7 +87,7 @@ const AddProjectHelper = {
 
   _addNewProjectFunction({ container, value }) {
     const newProject = document.createElement('new-project');
-    newProject.newProjectName = value;
+    newProject.projectData = value;
     container.appendChild(newProject);
   },
 };

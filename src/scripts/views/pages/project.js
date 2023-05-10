@@ -13,9 +13,11 @@ const ProjectPage = {
   },
 
   async afterRender() {
+    // trying to find project name by searching project's id
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const title = document.querySelector('.menu-title');
-    title.textContent = url.name;
+    const findProject = CollectAllProjects.findProjectById(url.id);
+    title.textContent = findProject.projectName;
 
     const userTasks = document.querySelector('.user-tasks');
     const addTask = document.createElement('add-task');
@@ -37,7 +39,7 @@ const ProjectPage = {
 
     ShowTaskHelper.showAllTask(
       userTasks,
-      CollectAllProjects.findProject(title.textContent).allTasks,
+      CollectAllProjects.findProjectByName(title.textContent).allTasks,
     );
   },
 };

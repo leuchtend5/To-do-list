@@ -10,8 +10,14 @@ class NewProject extends LitElement {
     return this;
   }
 
-  set newProjectName(name) {
-    this._newProjectName = name;
+  set projectData(data) {
+    this._oldProjectName = data.projectName;
+    this._newProjectName = data.projectName;
+    this._projectId = data.id;
+  }
+
+  get getProjectName() {
+    return this._oldProjectName;
   }
 
   limitProjectName() {
@@ -24,12 +30,12 @@ class NewProject extends LitElement {
 
   render() {
     return html`
-      <a href="#/project/${this._newProjectName}">
+      <a href="#/project/${this._projectId}">
         <div class="group-name">
           <span>⏺</span>
           <p class="project-name">${this.limitProjectName()}</p>
         </div>
-        <span class="total-tasks">13</span>
+        <span class="total-tasks"></span>
         <div class="edit-project"></div>
       </a>
     `;
