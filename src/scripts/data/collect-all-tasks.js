@@ -13,7 +13,7 @@ class CollectAllTask {
   }
 
   static filterByUpcoming() {
-    // parseISO parse string to date
+    // parse string to date using parseISO
     return this.allTasks.filter((task) => isFuture(parseISO(task.date)) === true);
   }
 

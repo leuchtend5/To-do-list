@@ -21,8 +21,8 @@ class NewProject extends LitElement {
   }
 
   limitProjectName() {
-    if (this._newProjectName.length > 17) {
-      this._newProjectName = `${this._newProjectName.substring(0, 17)}...`;
+    if (this._newProjectName.length > 13) {
+      this._newProjectName = `${this._newProjectName.substring(0, 13)}...`;
       return this._newProjectName;
     }
     return this._newProjectName;
@@ -36,7 +36,14 @@ class NewProject extends LitElement {
           <p class="project-name">${this.limitProjectName()}</p>
         </div>
         <span class="total-tasks"></span>
-        <div class="edit-project"></div>
+        <div class="edit-project">
+          <button class="edit-btn">
+            <i class="fa-solid fa-pen-to-square"></i>
+          </button>
+          <button class="delete-btn">
+            <i class="fa-solid fa-trash"></i>
+          </button>
+        </div>
       </a>
     `;
   }

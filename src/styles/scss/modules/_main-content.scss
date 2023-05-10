@@ -44,6 +44,7 @@
 
   .group-name {
     display: flex;
+    align-items: center;
     gap: 5px;
 
     span {
@@ -121,7 +122,34 @@
 
         .edit-project {
           display: none;
+          // display: flex;
+          // position: absolute;
+          // right: 26px;
+          // gap: 10px;
+
+          button {
+            border: none;
+            background-color: transparent;
+            opacity: 0.5;
+            cursor: pointer;
+          }
+
+          button:hover {
+            opacity: 1;
+          }
+
+          .fa-pen-to-square,
+          .fa-trash {
+            font-size: 1.1rem;
+          }
         }
+      }
+
+      new-project > a:hover .edit-project {
+        display: flex;
+        position: absolute;
+        right: 26px;
+        gap: 10px;
       }
 
       new-project > a:link {

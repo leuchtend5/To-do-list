@@ -56,6 +56,7 @@ header .hamburger-menu {
 }
 .main-content .group-name {
   display: flex;
+  align-items: center;
   gap: 5px;
 }
 .main-content .group-name span {
@@ -123,6 +124,25 @@ header .hamburger-menu {
 }
 .main-content .all-menu .project-wrapper new-project > a .edit-project {
   display: none;
+}
+.main-content .all-menu .project-wrapper new-project > a .edit-project button {
+  border: none;
+  background-color: transparent;
+  opacity: 0.5;
+  cursor: pointer;
+}
+.main-content .all-menu .project-wrapper new-project > a .edit-project button:hover {
+  opacity: 1;
+}
+.main-content .all-menu .project-wrapper new-project > a .edit-project .fa-pen-to-square,
+.main-content .all-menu .project-wrapper new-project > a .edit-project .fa-trash {
+  font-size: 1.1rem;
+}
+.main-content .all-menu .project-wrapper new-project > a:hover .edit-project {
+  display: flex;
+  position: absolute;
+  right: 26px;
+  gap: 10px;
 }
 .main-content .all-menu .project-wrapper new-project > a:link {
   color: black;

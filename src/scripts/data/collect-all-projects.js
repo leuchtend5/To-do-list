@@ -15,10 +15,6 @@ class CollectAllProjects {
   static findProjectById(id) {
     return this.allProjects.find((project) => project.id === id);
   }
-
-  // static getAllProjects() {
-  //   return this.allProjects;
-  // }
 }
 
 export default CollectAllProjects;
