@@ -256,7 +256,7 @@ header .hamburger-menu {
   display: none;
 }
 .main-content .task-input {
-  display: none;
+  display: flex;
   border: 1px solid rgba(0, 0, 0, 0.3);
   width: var(--width-title);
   flex-direction: column;
@@ -269,9 +269,6 @@ header .hamburger-menu {
 .main-content .task-input button {
   padding: 5px;
   border-radius: 4px;
-}
-.main-content .task-input.active {
-  display: flex;
 }
 .main-content .task-input * {
   width: 100%;

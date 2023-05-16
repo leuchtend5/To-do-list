@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import CollectAllProjects from '../data/collect-all-projects';
 import CollectAllTask from '../data/collect-all-tasks';
 import TaskCounter from '../utils/task-counter';
+// import './task-input-box';
 
 class UserTask extends LitElement {
   constructor() {
@@ -15,6 +16,7 @@ class UserTask extends LitElement {
   }
 
   firstUpdated() {
+    this._editTask();
     this._deleteTask();
     this._dateUI();
   }
@@ -27,7 +29,9 @@ class UserTask extends LitElement {
   }
 
   _deleteTask() {
-    this.querySelector('.delete-btn').addEventListener('click', () => {
+    const deleteBtn = this.querySelector('.delete-btn');
+
+    deleteBtn.addEventListener('click', () => {
       // delete task from project instance
       // find project that contain the task ID
       const findTask = CollectAllProjects.allProjects.find((project) =>
@@ -40,6 +44,24 @@ class UserTask extends LitElement {
 
       this.remove();
       TaskCounter.init();
+    });
+  }
+
+  _editTask() {
+    const editBtn = this.querySelector('.edit-btn');
+
+    editBtn.addEventListener('click', () => {
+      const editEvent = new CustomEvent('edit-task', {
+        bubbles: true,
+        composed: true,
+        detail: {
+          taskId: this._taskId,
+          taskName: this._taskName,
+          taskDate: this._taskDate,
+          taskDescription: this._taskDescription,
+        },
+      });
+      this.dispatchEvent(editEvent);
     });
   }
 

@@ -309,7 +309,7 @@
   }
 
   .task-input {
-    display: none;
+    display: flex;
     border: 1px solid rgba($color: #000000, $alpha: 0.3);
     width: var(--width-title);
     flex-direction: column;
@@ -325,9 +325,9 @@
     }
   }
 
-  .task-input.active {
-    display: flex;
-  }
+  // .task-input.active {
+  //   display: flex;
+  // }
 
   .task-input * {
     width: 100%;

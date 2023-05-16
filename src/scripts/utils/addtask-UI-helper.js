@@ -1,3 +1,4 @@
+import '../components/task-input-box';
 import CollectAllProjects from '../data/collect-all-projects';
 import CollectAllTask from '../data/collect-all-tasks';
 import CreateNewTask from '../data/create-new-task';
@@ -6,135 +7,102 @@ import ShowTaskHelper from './show-usertask-helper';
 import TaskCounter from './task-counter';
 
 const AddTaskUIHelper = {
-  init({ addTask, inputBox, priority, title, taskContainer }) {
-    const cancelBtn = document.querySelector('.cancel-btn');
-    const addBtn = document.querySelector('.add-btn');
-    const flagDropdown = document.querySelector('.flag-dropdown');
-    const taskName = document.querySelector('#task-name');
-    const taskDescription = document.querySelector('#description');
-    const taskDate = document.querySelector('#due-date');
+  init({ taskInputBox, title, taskContainer }) {
+    this._cancelBtn = document.querySelector('.cancel-btn');
+    this._addBtn = document.querySelector('.add-btn');
+    this._flagDropdown = document.querySelector('.flag-dropdown');
+    this._taskName = document.querySelector('#task-name');
+    this._taskDescription = document.querySelector('#description');
+    this._taskDate = document.querySelector('#due-date');
+    this._priority = document.querySelector('.priority');
+    const addTaskElement = document.querySelector('add-task');
 
-    addBtn.disabled = true;
+    this._addBtn.disabled = true;
 
-    this._addTaskToggle({
-      addTask,
-      inputBox,
-      cancelBtn,
-      taskName,
+    // to set autofocus on task name when task input dialog box appear
+    setTimeout(() => {
+      this._taskName.focus();
+    }, 0);
+
+    this._cancelBtn.addEventListener('click', () => {
+      addTaskElement.style.display = 'flex';
+      taskInputBox.remove();
     });
 
-    this._priorityToggle(priority, flagDropdown);
-
-    this._updateUI({
-      cancelBtn,
-      addBtn,
-    });
-
-    this._watchMediaChange({ mediaQuery, cancelBtn, addBtn });
-
-    this._watchUserInput({
-      element: taskName,
-      button: addBtn,
-    });
-
-    this._addTaskButton({
-      button: addBtn,
-      name: taskName,
-      date: taskDate,
-      description: taskDescription,
-      title,
-      taskContainer,
-    });
+    this._priorityToggle();
+    this._updateUI();
+    this._watchMediaChange();
+    this._watchUserInput();
+    this._addTaskButton(title, taskContainer);
   },
 
-  _addTaskToggle({ addTask, inputBox, cancelBtn, taskName }) {
-    addTask.addEventListener('click', () => {
-      inputBox.classList.add('active');
-      addTask.classList.add('nonactive');
-
-      // to delay the autofocus
-      // so the autofocus will active after element inserted to DOM
-      setTimeout(() => {
-        taskName.focus();
-      }, 0);
-    });
-
-    cancelBtn.addEventListener('click', () => {
-      addTask.classList.remove('nonactive');
-      inputBox.classList.remove('active');
-    });
-  },
-
-  _priorityToggle(priority, flagDropdown) {
+  _priorityToggle() {
     let flagToggle = true;
 
-    priority.addEventListener('click', () => {
+    this._priority.addEventListener('click', () => {
       if (flagToggle) {
-        flagDropdown.classList.add('active');
+        this._flagDropdown.classList.add('active');
         flagToggle = !flagToggle;
       } else {
-        flagDropdown.classList.remove('active');
+        this._flagDropdown.classList.remove('active');
         flagToggle = !flagToggle;
       }
     });
   },
 
-  _updateUI({ cancelBtn, addBtn }) {
+  _updateUI() {
     if (mediaQuery.matches) {
-      cancelBtn.innerHTML = '<i class="fa-solid fa-x"></i>';
-      addBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i>';
+      this._cancelBtn.innerHTML = '<i class="fa-solid fa-x"></i>';
+      this._addBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i>';
     } else {
-      cancelBtn.textContent = 'Cancel';
-      addBtn.textContent = 'Add Task';
+      this._cancelBtn.textContent = 'Cancel';
+      this._addBtn.textContent = 'Add Task';
     }
   },
 
-  _watchMediaChange({ cancelBtn, addBtn }) {
+  _watchMediaChange() {
     mediaQuery.addEventListener('change', () => {
-      this._updateUI({
-        cancelBtn,
-        addBtn,
-        mediaQuery,
-      });
+      this._updateUI();
     });
   },
 
-  _watchUserInput({ element, button }) {
-    element.addEventListener('input', () => {
-      if (element.value !== '') {
-        button.disabled = false;
-        button.classList.remove('disable');
+  _watchUserInput() {
+    this._taskName.addEventListener('input', () => {
+      if (this._taskName.value !== '') {
+        this._addBtn.disabled = false;
+        this._addBtn.classList.remove('disable');
       } else {
-        button.disabled = true;
-        button.classList.add('disable');
+        this._addBtn.disabled = true;
+        this._addBtn.classList.add('disable');
       }
     });
   },
 
-  _addTaskButton({ button, name, date, description, title, taskContainer }) {
-    button.addEventListener('click', () => {
-      if (!button.disabled) {
+  _addTaskButton(title, taskContainer) {
+    this._addBtn.addEventListener('click', () => {
+      if (!this._addBtn.disabled) {
         const foundProject = CollectAllProjects.findProjectByName(title);
         const newTask = new CreateNewTask({
-          name: name.value,
-          date: date.value,
-          description: description.value,
+          name: this._taskName.value,
+          date: this._taskDate.value,
+          description: this._taskDescription.value,
         });
 
         foundProject.setNewTask(newTask);
         CollectAllTask.addNewTask(newTask);
-        ShowTaskHelper.showTask(taskContainer, newTask);
+        // ShowTaskHelper.showTask(taskContainer, newTask);
+        // this.dispatchEvent(new Event('add-task'));
         TaskCounter.init();
       }
 
       // reset add task form UI
-      name.value = '';
-      date.value = '';
-      description.value = '';
-      button.disabled = true;
-      button.classList.add('disable');
+      this._taskName.value = '';
+      this._taskDate.value = '';
+      this._taskDescription.value = '';
+      this._addBtn.disabled = true;
+      this._addBtn.classList.add('disable');
       setTimeout(() => {
-        name.focus();
+        this._taskName.focus();
       }, 0);
     });
   },
