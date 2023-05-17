@@ -1,5 +1,5 @@
 import UrlParser from '../../routes/url-parser';
-import AddTaskUIHelper from '../../utils/addtask-UI-helper';
+// import AddTaskUIHelper from '../../utils/addtask-UI-helper';
 import CollectAllProjects from '../../data/collect-all-projects';
 import ShowTaskHelper from '../../utils/show-usertask-helper';
 
@@ -29,13 +29,13 @@ const ProjectPage = {
     const taskInputBox = addTask.querySelector('.task-input');
     const priorityBtn = addTask.querySelector('.priority');
 
-    AddTaskUIHelper.init({
-      addTask: addTaskSelector,
-      inputBox: taskInputBox,
-      priority: priorityBtn,
-      title: title.textContent,
-      taskContainer: userTasks,
-    });
+    // AddTaskUIHelper.init({
+    //   addTask: addTaskSelector,
+    //   inputBox: taskInputBox,
+    //   priority: priorityBtn,
+    //   title: title.textContent,
+    //   taskContainer: userTasks,
+    // });
 
     ShowTaskHelper.showAllTask(
       userTasks,

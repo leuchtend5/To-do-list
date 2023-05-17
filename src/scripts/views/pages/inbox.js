@@ -2,6 +2,7 @@ import '../../components/add-task';
 import '../../components/task-input-box';
 import ShowTaskHelper from '../../utils/show-usertask-helper';
 import CollectAllProjects from '../../data/collect-all-projects';
+import EditTaskHelper from '../../utils/edit-task-helper';
 
 const InboxPage = {
   async render() {
@@ -27,39 +28,12 @@ const InboxPage = {
       userTasks.insertAdjacentElement('afterend', taskInputBox);
     });
 
-    const handleEditTask = async (e) => {
+    userTasks.addEventListener('edit-task', (e) => {
       this._removeTaskInputBox();
-
       addTask.style.display = 'flex';
 
-      const taskInputBox = document.createElement('task-input');
-      taskInputBox.taskContainer = userTasks;
-
-      // find the task index with task ID
-      const allTasks = document.querySelectorAll('user-task');
-      const newArray = Array.from(allTasks);
-
-      const index = newArray.findIndex((task) => task._taskId === e.detail.taskId);
-
-      const position = allTasks[index];
-      position.insertAdjacentElement('afterend', taskInputBox);
-
-      await customElements.whenDefined('task-input');
-
-      const name = document.querySelector('#task-name');
-      const date = document.querySelector('#due-date');
-      const description = document.querySelector('#description');
-      const test = document.querySelector('.add-btn');
-
-      name.value = e.detail.taskName;
-      date.value = e.detail.taskDate;
-      description.value = e.detail.taskDescription;
-      test.textContent = 'Save';
-      test.disabled = false;
-      test.classList.remove('disable');
-    };
-
-    userTasks.addEventListener('edit-task', handleEditTask);
+      EditTaskHelper.init(userTasks, e);
+    });
 
     ShowTaskHelper.showAllTask(userTasks, CollectAllProjects.findProjectByName(title).allTasks);
   },
