@@ -90,7 +90,7 @@ class UserTask extends LitElement {
       <div class="task-wrapper">
         <span>⏺</span>
         <div>
-          <p>${this._taskName}</p>
+          <p class="task-input-name">${this._taskName}</p>
           <p class="task-desc">${this._taskDescription}</p>
           <div class="task-date">
             <i class="fa-regular fa-calendar"></i>

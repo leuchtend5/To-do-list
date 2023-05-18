@@ -28,16 +28,20 @@ class TaskInputBox extends LitElement {
     const flagDropDown = this.querySelector('.flag-dropdown');
     const addBtn = this.querySelector('.add-btn');
     const cancelBtn = this.querySelector('.cancel-btn');
+    const saveBtn = this.querySelector('.save-btn');
+    const title = document.querySelector('.menu-title').textContent.toLowerCase();
 
     addBtn.disabled = true;
+    saveBtn.style.display = 'none';
 
     this._autoFocus(taskName);
-    this._addTask({ addBtn, taskName, taskDate, taskDescription });
+    this._addTask({ addBtn, taskName, taskDate, taskDescription, title });
+    // this._saveTask({ saveBtn, taskName, taskDate, taskDescription, title });
     this._cancelTask(cancelBtn);
     this._priorityToggle(priorityBtn, flagDropDown);
-    this._updateUI(addBtn, cancelBtn);
-    this._watchMediaChange(addBtn, cancelBtn);
-    this._watchUserInput(taskName, addBtn);
+    this._updateUI(addBtn, cancelBtn, saveBtn);
+    this._watchMediaChange(addBtn, cancelBtn, saveBtn);
+    this._watchUserInput(taskName, addBtn, saveBtn);
   }
 
   _autoFocus(element) {
@@ -53,9 +57,7 @@ class TaskInputBox extends LitElement {
     this._autoFocus(taskName);
   }
 
-  _addTask({ addBtn, taskName, taskDate, taskDescription }) {
-    const title = document.querySelector('.menu-title').textContent.toLowerCase();
-
+  _addTask({ addBtn, taskName, taskDate, taskDescription, title }) {
     addBtn.addEventListener('click', () => {
       if (!addBtn.disabled) {
         const foundProject = CollectAllProjects.findProjectByName(title);
@@ -73,6 +75,15 @@ class TaskInputBox extends LitElement {
       this._resetInputValue({ taskName, taskDate, taskDescription, addBtn });
     });
   }
+
+  // _saveTask({ saveBtn, taskName, taskDate, taskDescription, title }) {
+  //   saveBtn.addEventListener('click', () => {
+  //     if (!saveBtn.disabled) {
+  //       const foundProject = CollectAllProjects.findProjectByName(title);
+  //       // const foundTask = foundProject.allTasks
+  //     }
+  //   });
+  // }
 
   _cancelTask(button) {
     const addTask = document.querySelector('add-task');
@@ -97,30 +108,36 @@ class TaskInputBox extends LitElement {
     });
   }
 
-  _updateUI(addBtn, cancelBtn) {
+  _updateUI(addBtn, cancelBtn, saveBtn) {
     if (mediaQuery.matches) {
       cancelBtn.innerHTML = '<i class="fa-solid fa-x"></i>';
       addBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i>';
+      saveBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i>';
     } else {
       cancelBtn.textContent = 'Cancel';
       addBtn.textContent = 'Add Task';
+      saveBtn.textContent = 'Save';
     }
   }
 
-  _watchMediaChange(addBtn, cancelBtn) {
+  _watchMediaChange(addBtn, cancelBtn, saveBtn) {
     mediaQuery.addEventListener('change', () => {
-      this._updateUI(addBtn, cancelBtn);
+      this._updateUI(addBtn, cancelBtn, saveBtn);
     });
   }
 
-  _watchUserInput(element, addBtn) {
+  _watchUserInput(element, addBtn, saveBtn) {
     element.addEventListener('input', () => {
       if (element.value !== '') {
         addBtn.disabled = false;
         addBtn.classList.remove('disable');
+        saveBtn.disabled = false;
+        saveBtn.classList.remove('disable');
       } else {
         addBtn.disabled = true;
         addBtn.classList.add('disable');
+        saveBtn.disabled = true;
+        saveBtn.classList.add('disable');
       }
     });
   }
@@ -169,6 +186,7 @@ class TaskInputBox extends LitElement {
           <div class="yes-no-btn">
             <button class="cancel-btn">Cancel</button>
             <button class="add-btn disable">Add Task</button>
+            <button class="save-btn">Save</button>
           </div>
         </div>
       </div>

@@ -7,6 +7,18 @@ class CreateNewTask {
     this.date = date;
     this.description = description;
   }
+
+  setTaskName(name) {
+    this.name = name;
+  }
+
+  setTaskDate(date) {
+    this.date = date;
+  }
+
+  setTaskDescription(description) {
+    this.description = description;
+  }
 }
 
 export default CreateNewTask;

@@ -22,6 +22,10 @@ class CollectAllTask {
     this.allTasks.splice(index, 1);
     return this.allTasks;
   }
+
+  static findTaskById(id) {
+    return this.allTasks.find((task) => task.id === id);
+  }
 }
 
 export default CollectAllTask;

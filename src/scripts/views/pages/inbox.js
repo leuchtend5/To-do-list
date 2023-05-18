@@ -32,7 +32,11 @@ const InboxPage = {
       this._removeTaskInputBox();
       addTask.style.display = 'flex';
 
-      EditTaskHelper.init(userTasks, e);
+      EditTaskHelper.init({
+        container: userTasks,
+        data: e,
+        title,
+      });
     });
 
     ShowTaskHelper.showAllTask(userTasks, CollectAllProjects.findProjectByName(title).allTasks);

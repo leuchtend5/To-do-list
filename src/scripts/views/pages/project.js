@@ -1,7 +1,7 @@
 import UrlParser from '../../routes/url-parser';
-// import AddTaskUIHelper from '../../utils/addtask-UI-helper';
 import CollectAllProjects from '../../data/collect-all-projects';
 import ShowTaskHelper from '../../utils/show-usertask-helper';
+import EditTaskHelper from '../../utils/edit-task-helper';
 
 const ProjectPage = {
   async render() {
@@ -23,24 +23,37 @@ const ProjectPage = {
     const addTask = document.createElement('add-task');
     userTasks.insertAdjacentElement('afterend', addTask);
 
-    await customElements.whenDefined('add-task');
+    addTask.addEventListener('click', async () => {
+      // remove all the task input dialog box and add a new one
+      this._removeTaskInputBox();
+      addTask.style.display = 'none';
+      const taskInputBox = document.createElement('task-input');
+      taskInputBox.taskContainer = userTasks;
+      userTasks.insertAdjacentElement('afterend', taskInputBox);
+    });
 
-    const addTaskSelector = addTask.querySelector('.add-task');
-    const taskInputBox = addTask.querySelector('.task-input');
-    const priorityBtn = addTask.querySelector('.priority');
+    userTasks.addEventListener('edit-task', (e) => {
+      this._removeTaskInputBox();
+      addTask.style.display = 'flex';
 
-    // AddTaskUIHelper.init({
-    //   addTask: addTaskSelector,
-    //   inputBox: taskInputBox,
-    //   priority: priorityBtn,
-    //   title: title.textContent,
-    //   taskContainer: userTasks,
-    // });
+      EditTaskHelper.init({
+        container: userTasks,
+        data: e,
+        title: title.textContent,
+      });
+    });
 
     ShowTaskHelper.showAllTask(
       userTasks,
       CollectAllProjects.findProjectByName(title.textContent).allTasks,
     );
+  },
+
+  _removeTaskInputBox() {
+    const existingTaskInput = document.querySelector('task-input');
+    if (existingTaskInput) {
+      existingTaskInput.remove();
+    }
   },
 };
 

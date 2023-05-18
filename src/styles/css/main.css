@@ -293,21 +293,26 @@ header .hamburger-menu {
   width: 70px;
 }
 .main-content .yes-no-btn .add-btn,
-.main-content .yes-no-btn .cancel-btn {
+.main-content .yes-no-btn .cancel-btn,
+.main-content .yes-no-btn .save-btn {
   cursor: pointer;
 }
-.main-content .yes-no-btn .add-btn {
+.main-content .yes-no-btn .add-btn,
+.main-content .yes-no-btn .save-btn {
   background-color: #ccd5ae;
   color: white;
 }
-.main-content .yes-no-btn .add-btn:hover {
+.main-content .yes-no-btn .add-btn:hover,
+.main-content .yes-no-btn .save-btn:hover {
   filter: brightness(90%);
 }
-.main-content .yes-no-btn .add-btn.disable {
+.main-content .yes-no-btn .add-btn.disable,
+.main-content .yes-no-btn .save-btn.disable {
   cursor: not-allowed;
   opacity: 0.6;
 }
-.main-content .yes-no-btn .add-btn.disable:hover {
+.main-content .yes-no-btn .add-btn.disable:hover,
+.main-content .yes-no-btn .save-btn.disable:hover {
   filter: brightness(100%);
 }
 .main-content .decision-panel {

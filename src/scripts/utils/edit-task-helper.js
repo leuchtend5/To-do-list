@@ -1,7 +1,10 @@
+import { format } from 'date-fns';
 import '../components/task-input-box';
+import CollectAllProjects from '../data/collect-all-projects';
+import TaskCounter from './task-counter';
 
 const EditTaskHelper = {
-  async init(container, data) {
+  async init({ container, data, title }) {
     this._findSelectedTask(data);
 
     // create input dialog box when user click edit-btn
@@ -11,6 +14,7 @@ const EditTaskHelper = {
 
     // hide the task and show the dialog box
     this._selectedTask.style.display = 'none';
+
     await customElements.whenDefined('task-input');
 
     const name = document.querySelector('#task-name');
@@ -18,17 +22,31 @@ const EditTaskHelper = {
     const description = document.querySelector('#description');
     const addBtn = document.querySelector('.add-btn');
     const cancelBtn = document.querySelector('.cancel-btn');
+    const saveBtn = document.querySelector('.save-btn');
+    const { taskId } = data.detail;
 
-    this._saveNewData({
+    addBtn.style.display = 'none';
+    saveBtn.style.display = 'block';
+
+    const foundProject = CollectAllProjects.findProjectByName(title);
+    const foundTask = foundProject.findTask(taskId);
+
+    this._existedData({
       name,
       date,
       description,
       data,
+      addBtn,
     });
 
     this._cancelFunction(cancelBtn);
-
-    this._settingAddBtnUI(addBtn);
+    this._saveTask({
+      saveBtn,
+      data: foundTask,
+      name,
+      date,
+      description,
+    });
   },
 
   _findSelectedTask(data) {
@@ -48,16 +66,62 @@ const EditTaskHelper = {
     });
   },
 
-  _saveNewData({ name, date, description, data }) {
+  _existedData({ name, date, description, data }) {
     name.value = data.detail.taskName;
     date.value = data.detail.taskDate;
     description.value = data.detail.taskDescription;
   },
 
-  _settingAddBtnUI(addBtn) {
-    addBtn.textContent = 'Save';
-    addBtn.disabled = false;
-    addBtn.classList.remove('disable');
+  _saveTask({ saveBtn, data, name, date, description }) {
+    saveBtn.addEventListener('click', () => {
+      data.setTaskName(name.value);
+      data.setTaskDate(date.value);
+      data.setTaskDescription(description.value);
+
+      this._updateTaskUI({
+        name,
+        date,
+        description,
+      });
+    });
+  },
+
+  _updateTaskUI({ name, date, description }) {
+    const nameElement = this._selectedTask.querySelector('.task-input-name');
+    const dateElement = this._selectedTask.querySelector('.task-due-date');
+    const descriptionElement = this._selectedTask.querySelector('.task-desc');
+    const dateContainer = this._selectedTask.querySelector('.task-date');
+
+    nameElement.textContent = name.value;
+    descriptionElement.textContent = description.value;
+
+    if (date.value === '') {
+      dateContainer.style.display = 'none';
+    } else {
+      dateContainer.style.display = 'flex';
+      dateElement.textContent = this._formattedDate(date);
+    }
+
+    this._selectedTask.style.display = 'block';
+
+    TaskCounter.init();
+    this._removeTaskInputBox();
+  },
+
+  _formattedDate(date) {
+    if (date.value !== '') {
+      const newDate = date.value.replace(/-/g, ', ');
+      const newFormatDate = format(new Date(newDate), 'dd MMMM yyyy');
+      return newFormatDate;
+    }
+    return date.value;
+  },
+
+  _removeTaskInputBox() {
+    const existingTaskInput = document.querySelector('task-input');
+    if (existingTaskInput) {
+      existingTaskInput.remove();
+    }
   },
 };
 

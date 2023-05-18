@@ -356,25 +356,30 @@
     }
 
     .add-btn,
-    .cancel-btn {
+    .cancel-btn,
+    .save-btn {
       cursor: pointer;
     }
 
-    .add-btn {
+    .add-btn,
+    .save-btn {
       background-color: #ccd5ae;
       color: white;
     }
 
-    .add-btn:hover {
+    .add-btn:hover,
+    .save-btn:hover {
       filter: brightness(90%);
     }
 
-    .add-btn.disable {
+    .add-btn.disable,
+    .save-btn.disable {
       cursor: not-allowed;
       opacity: 0.6;
     }
 
-    .add-btn.disable:hover {
+    .add-btn.disable:hover,
+    .save-btn.disable:hover {
       filter: brightness(100%);
     }
   }

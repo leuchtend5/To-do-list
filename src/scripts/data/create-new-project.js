@@ -22,6 +22,10 @@ class CreateNewProject {
     this.allTasks.splice(index, 1);
     return this.allTasks;
   }
+
+  findTask(id) {
+    return this.allTasks.find((task) => task.id === id);
+  }
 }
 
 export default CreateNewProject;
