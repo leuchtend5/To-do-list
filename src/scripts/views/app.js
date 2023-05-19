@@ -13,7 +13,6 @@ class App {
     drawer,
     addProjectBtn,
     projectContainer,
-    projectCounter,
     overlay,
     projectForm,
     confirmNewProjectBtn,
@@ -25,7 +24,6 @@ class App {
     this._drawer = drawer;
     this._addProjectBtn = addProjectBtn;
     this._container = projectContainer;
-    this._counter = projectCounter;
     this._overlay = overlay;
     this._projectForm = projectForm;
     this._confirmNewProjectBtn = confirmNewProjectBtn;
@@ -44,7 +42,6 @@ class App {
     AddProjectHelper.init({
       addButton: this._addProjectBtn,
       container: this._container,
-      counter: this._counter,
       projectForm: this._projectForm,
       overlay: this._overlay,
       confirmButton: this._confirmNewProjectBtn,

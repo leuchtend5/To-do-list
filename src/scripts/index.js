@@ -9,7 +9,6 @@ const menuWrapper = document.querySelector('.all-menu');
 const header = document.querySelector('header');
 const content = document.querySelector('.content');
 const projectList = document.querySelector('.project-list');
-const projectCounter = document.querySelector('.project-counter');
 const overlay = document.querySelector('.overlay');
 const newProjectForm = document.querySelector('.add-project-form');
 const confirmNewProjectBtn = document.querySelector('.add-project-name-btn');
@@ -22,7 +21,6 @@ const app = new App({
   drawer: menuWrapper,
   addProjectBtn: addNewProjectBtn,
   projectContainer: projectList,
-  projectCounter,
   overlay,
   projectForm: newProjectForm,
   confirmNewProjectBtn,

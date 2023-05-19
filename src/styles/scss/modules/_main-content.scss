@@ -4,6 +4,7 @@
   justify-content: flex-start;
   overflow-y: scroll;
   margin-top: var(--top-header);
+  height: 100%;
 
   li:hover,
   .project-group:hover,
@@ -152,6 +153,12 @@
         gap: 10px;
       }
 
+      new-project > a:hover {
+        .total-tasks {
+          opacity: 0;
+        }
+      }
+
       new-project > a:link {
         color: black;
       }
@@ -169,11 +176,11 @@
   }
 
   .content {
-    width: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
     transition: margin-left 0.15s ease-in-out;
+    width: 100%;
   }
 
   .empty {

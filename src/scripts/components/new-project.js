@@ -1,4 +1,7 @@
 import { LitElement, html } from 'lit';
+import CollectAllProjects from '../data/collect-all-projects';
+import CollectAllTask from '../data/collect-all-tasks';
+import ProjectCounter from '../utils/project-counter';
 
 class NewProject extends LitElement {
   constructor() {
@@ -8,6 +11,11 @@ class NewProject extends LitElement {
   // DISABLE SHADOW DOM
   createRenderRoot() {
     return this;
+  }
+
+  firstUpdated() {
+    this._editProject();
+    this._deleteProject();
   }
 
   set projectData(data) {
@@ -20,7 +28,7 @@ class NewProject extends LitElement {
     return this._oldProjectName;
   }
 
-  limitProjectName() {
+  _limitProjectName() {
     if (this._newProjectName.length > 13) {
       this._newProjectName = `${this._newProjectName.substring(0, 13)}...`;
       return this._newProjectName;
@@ -28,12 +36,35 @@ class NewProject extends LitElement {
     return this._newProjectName;
   }
 
+  _editProject() {
+    const editBtn = this.querySelector('.edit-btn');
+
+    editBtn.addEventListener('click', () => {
+      console.log(CollectAllProjects.allProjects);
+    });
+  }
+
+  _deleteProject() {
+    const deleteBtn = this.querySelector('.delete-btn');
+
+    deleteBtn.addEventListener('click', () => {
+      // also delete project's task in CollectAllTask Class
+      const taskInProject = CollectAllProjects.findProjectById(this._projectId).allTasks;
+      taskInProject.forEach((task) => CollectAllTask.deleteTask(task.id));
+
+      CollectAllProjects.deleteProject(this._projectId);
+
+      this.remove();
+      ProjectCounter.init();
+    });
+  }
+
   render() {
     return html`
       <a href="#/project/${this._projectId}">
         <div class="group-name">
           <span>⏺</span>
-          <p class="project-name">${this.limitProjectName()}</p>
+          <p class="project-name">${this._limitProjectName()}</p>
         </div>
         <span class="total-tasks"></span>
         <div class="edit-project">

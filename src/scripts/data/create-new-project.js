@@ -9,12 +9,12 @@ class CreateNewProject {
 
   setProjectName(name) {
     this.projectName = name;
-    return this.projectName;
+    // return this.projectName;
   }
 
   setNewTask(data) {
     this.allTasks.push(data);
-    return this._allTasks;
+    // return this._allTasks;
   }
 
   deleteTask(id) {

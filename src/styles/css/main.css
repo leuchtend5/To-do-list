@@ -24,6 +24,7 @@ header .hamburger-menu {
   justify-content: flex-start;
   overflow-y: scroll;
   margin-top: var(--top-header);
+  height: 100%;
 }
 .main-content li:hover,
 .main-content .project-group:hover,
@@ -144,6 +145,9 @@ header .hamburger-menu {
   right: 26px;
   gap: 10px;
 }
+.main-content .all-menu .project-wrapper new-project > a:hover .total-tasks {
+  opacity: 0;
+}
 .main-content .all-menu .project-wrapper new-project > a:link {
   color: black;
 }
@@ -154,11 +158,11 @@ header .hamburger-menu {
   margin-left: 0;
 }
 .main-content .content {
-  width: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
   transition: margin-left 0.15s ease-in-out;
+  width: 100%;
 }
 .main-content .empty {
   width: 1px;

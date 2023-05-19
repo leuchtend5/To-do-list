@@ -1,19 +1,20 @@
 import CreateNewProject from '../data/create-new-project';
 import CollectAllProjects from '../data/collect-all-projects';
+import ProjectCounter from './project-counter';
 import '../components/new-project';
 
 const AddProjectHelper = {
   init({
     addButton,
     container,
-    counter,
+    // counter,
     projectForm,
     overlay,
     confirmButton,
     cancelButton,
     userInput,
   }) {
-    let totalProject = 0;
+    // let totalProject = 0;
 
     this._buttonDisable(confirmButton);
 
@@ -34,19 +35,16 @@ const AddProjectHelper = {
     });
 
     confirmButton.addEventListener('click', () => {
-      if (totalProject < 5) {
+      if (CollectAllProjects.allProjects.length < 6) {
         const project = new CreateNewProject(userInput.value);
         CollectAllProjects.addNewProject(project);
-        // localStorage.setItem('projects', JSON.stringify(CollectAllProjects.allProjects));
 
         this._addNewProjectFunction({
           container,
-          counter,
           value: project,
         });
 
-        totalProject += 1;
-        counter.textContent = `(${totalProject}/5)`;
+        ProjectCounter.init();
 
         // back to default UI
         this._newProjectFormOff(projectForm, overlay);

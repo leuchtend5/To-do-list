@@ -36,7 +36,6 @@ class TaskInputBox extends LitElement {
 
     this._autoFocus(taskName);
     this._addTask({ addBtn, taskName, taskDate, taskDescription, title });
-    // this._saveTask({ saveBtn, taskName, taskDate, taskDescription, title });
     this._cancelTask(cancelBtn);
     this._priorityToggle(priorityBtn, flagDropDown);
     this._updateUI(addBtn, cancelBtn, saveBtn);
@@ -75,15 +74,6 @@ class TaskInputBox extends LitElement {
       this._resetInputValue({ taskName, taskDate, taskDescription, addBtn });
     });
   }
-
-  // _saveTask({ saveBtn, taskName, taskDate, taskDescription, title }) {
-  //   saveBtn.addEventListener('click', () => {
-  //     if (!saveBtn.disabled) {
-  //       const foundProject = CollectAllProjects.findProjectByName(title);
-  //       // const foundTask = foundProject.allTasks
-  //     }
-  //   });
-  // }
 
   _cancelTask(button) {
     const addTask = document.querySelector('add-task');

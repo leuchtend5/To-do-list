@@ -15,6 +15,12 @@ class CollectAllProjects {
   static findProjectById(id) {
     return this.allProjects.find((project) => project.id === id);
   }
+
+  static deleteProject(id) {
+    const index = this.allProjects.findIndex((project) => project.id === id);
+    this.allProjects.splice(index, 1);
+    return this.allProjects;
+  }
 }
 
 export default CollectAllProjects;
