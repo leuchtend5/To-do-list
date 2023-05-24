@@ -17,6 +17,10 @@ class CollectAllTask {
     return this.allTasks.filter((task) => isFuture(parseISO(task.date)) === true);
   }
 
+  static filterByStatus() {
+    //
+  }
+
   static deleteTask(id) {
     const index = this.allTasks.findIndex((task) => task.id === id);
     this.allTasks.splice(index, 1);

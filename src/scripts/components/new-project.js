@@ -16,6 +16,16 @@ class NewProject extends LitElement {
   firstUpdated() {
     this._editProject();
     this._deleteProject();
+
+    // close the task input box when user click a project (this)
+    this.addEventListener('click', () => {
+      const taskInputBox = document.querySelector('task-input');
+      const addTask = document.querySelector('add-task');
+      if (taskInputBox) {
+        taskInputBox.remove();
+        addTask.style.display = 'flex';
+      }
+    });
   }
 
   set projectData(data) {

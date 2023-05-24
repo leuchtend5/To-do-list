@@ -50,7 +50,8 @@ class UserTask extends LitElement {
   _editTask() {
     const editBtn = this.querySelector('.edit-btn');
 
-    editBtn.addEventListener('click', () => {
+    editBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       const editEvent = new CustomEvent('edit-task', {
         bubbles: true,
         composed: true,

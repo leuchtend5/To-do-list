@@ -335,7 +335,7 @@ header .hamburger-menu {
   gap: 10px;
   position: relative;
   background-color: white;
-  width: auto;
+  width: 90px;
   height: 25px;
   cursor: pointer;
 }
@@ -374,14 +374,23 @@ header .hamburger-menu {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
 }
-.main-content .priority .flag-dropdown.active {
-  display: flex;
-}
-.main-content .priority .current-flag {
+.main-content .priority .flag-dropdown li {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 5px;
+}
+.main-content .priority .flag-dropdown.active {
+  display: flex;
+}
+.main-content .priority .current-flag > p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+.main-content .priority .fa-flag {
+  width: auto;
 }
 .main-content .set-panel {
   gap: 15px;

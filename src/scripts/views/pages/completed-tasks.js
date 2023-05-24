@@ -8,10 +8,7 @@ const CompletedTasksPage = {
   },
 
   async afterRender() {
-    const userTasks = document.querySelector('.user-tasks');
-
-    const userTask = document.createElement('user-task');
-    userTasks.appendChild(userTask);
+    //
   },
 };
 

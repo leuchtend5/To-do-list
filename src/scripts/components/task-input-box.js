@@ -26,38 +26,40 @@ class TaskInputBox extends LitElement {
     const taskDate = this.querySelector('#due-date');
     const priorityBtn = this.querySelector('.priority');
     const flagDropDown = this.querySelector('.flag-dropdown');
+    const currentPriority = document.querySelector('.current-flag > p');
     const addBtn = this.querySelector('.add-btn');
     const cancelBtn = this.querySelector('.cancel-btn');
     const saveBtn = this.querySelector('.save-btn');
     const title = document.querySelector('.menu-title').textContent.toLowerCase();
+    const addTask = document.querySelector('add-task');
 
     addBtn.disabled = true;
     saveBtn.style.display = 'none';
 
     this._autoFocus(taskName);
-    this._addTask({ addBtn, taskName, taskDate, taskDescription, title });
-    this._cancelTask(cancelBtn);
-    this._priorityToggle(priorityBtn, flagDropDown);
+    this._addTask({ addBtn, taskName, taskDate, taskDescription, currentPriority, title });
+    this._cancelTask(cancelBtn, addTask);
+    this._priorityToggle({ priorityBtn, flagDropDown, currentPriority });
     this._updateUI(addBtn, cancelBtn, saveBtn);
     this._watchMediaChange(addBtn, cancelBtn, saveBtn);
     this._watchUserInput(taskName, addBtn, saveBtn);
-    this._test();
   }
 
   _autoFocus(element) {
     element.focus();
   }
 
-  _resetInputValue({ taskName, taskDate, taskDescription, addBtn }) {
+  _resetInputValue({ taskName, taskDate, taskDescription, currentPriority, addBtn }) {
     taskName.value = '';
     taskDate.value = '';
     taskDescription.value = '';
+    currentPriority.innerHTML = '<i class="fa-solid fa-flag p-four"></i> Priority 4';
     addBtn.disabled = true;
     addBtn.classList.add('disable');
     this._autoFocus(taskName);
   }
 
-  _addTask({ addBtn, taskName, taskDate, taskDescription, title }) {
+  _addTask({ addBtn, taskName, taskDate, taskDescription, currentPriority, title }) {
     addBtn.addEventListener('click', () => {
       if (!addBtn.disabled) {
         const foundProject = CollectAllProjects.findProjectByName(title);
@@ -65,32 +67,39 @@ class TaskInputBox extends LitElement {
           name: taskName.value,
           date: taskDate.value,
           description: taskDescription.value,
+          priorityFlag: currentPriority.innerHTML,
+          isComplete: false,
         });
         foundProject.setNewTask(newTask);
         CollectAllTask.addNewTask(newTask);
         ShowTaskHelper.showTask(this._taskContainer, newTask);
         TaskCounter.init();
+        console.log(CollectAllTask.allTasks);
       }
 
-      this._resetInputValue({ taskName, taskDate, taskDescription, addBtn });
+      this._resetInputValue({ taskName, taskDate, taskDescription, currentPriority, addBtn });
     });
   }
 
-  _cancelTask(button) {
-    const addTask = document.querySelector('add-task');
-
+  _cancelTask(button, addTask) {
     button.addEventListener('click', () => {
       this.remove();
       addTask.style.display = 'flex';
     });
   }
 
-  _priorityToggle(priorityBtn, flagDropDown) {
+  _priorityToggle({ priorityBtn, flagDropDown, currentPriority }) {
     let flagToggle = true;
+    let selectedFlag;
 
     priorityBtn.addEventListener('click', () => {
       if (flagToggle) {
         flagDropDown.classList.add('active');
+        flagDropDown.addEventListener('click', (e) => {
+          selectedFlag = e.target.innerHTML;
+
+          currentPriority.innerHTML = selectedFlag;
+        });
         flagToggle = !flagToggle;
       } else {
         flagDropDown.classList.remove('active');
@@ -133,18 +142,6 @@ class TaskInputBox extends LitElement {
     });
   }
 
-  _test() {
-    document.addEventListener('click', (e) => {
-      e.stopPropagation();
-
-      if (!this.contains(e.target)) {
-        const addTask = document.querySelector('add-task');
-        this.remove();
-        addTask.style.display = 'flex';
-      }
-    });
-  }
-
   render() {
     return html`
       <div class="task-input">
@@ -160,27 +157,14 @@ class TaskInputBox extends LitElement {
           </div>
           <button class="priority">
             <div class="current-flag">
-              <span><i class="fa-solid fa-flag p-four"></i></span>
-              <p>Priority 4</p>
+              <p><i class="fa-solid fa-flag p-four"></i> Priority 4</p>
             </div>
             <div class="flag-dropdown">
               <ul>
-                <li>
-                  <span><i class="fa-solid fa-flag p-one"></i></span>
-                  <p>Priority 1</p>
-                </li>
-                <li>
-                  <span><i class="fa-solid fa-flag p-two"></i></span>
-                  <p>Priority 2</p>
-                </li>
-                <li>
-                  <span><i class="fa-solid fa-flag p-three"></i></span>
-                  <p>Priority 3</p>
-                </li>
-                <li>
-                  <span><i class="fa-solid fa-flag p-four"></i></span>
-                  <p>Priority 4</p>
-                </li>
+                <li><i class="fa-solid fa-flag p-one"></i> Priority 1</li>
+                <li><i class="fa-solid fa-flag p-two"></i> Priority 2</li>
+                <li><i class="fa-solid fa-flag p-three"></i> Priority 3</li>
+                <li><i class="fa-solid fa-flag p-four"></i> Priority 4</li>
               </ul>
             </div>
           </button>

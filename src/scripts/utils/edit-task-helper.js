@@ -35,7 +35,7 @@ const EditTaskHelper = {
       name,
       date,
       description,
-      data,
+      data: foundTask,
       addBtn,
     });
 
@@ -67,9 +67,9 @@ const EditTaskHelper = {
   },
 
   _existedData({ name, date, description, data }) {
-    name.value = data.detail.taskName;
-    date.value = data.detail.taskDate;
-    description.value = data.detail.taskDescription;
+    name.value = data.name;
+    date.value = data.date;
+    description.value = data.description;
   },
 
   _saveTask({ saveBtn, data, name, date, description }) {
