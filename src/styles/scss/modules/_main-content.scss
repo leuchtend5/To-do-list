@@ -199,6 +199,7 @@
     font-size: 1.4rem;
     transition: width 0.15s ease-in-out;
     z-index: 2;
+    word-wrap: break-word;
   }
 
   .content.active {

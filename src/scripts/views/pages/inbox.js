@@ -19,7 +19,8 @@ const InboxPage = {
     const addTask = document.createElement('add-task');
     userTasks.insertAdjacentElement('afterend', addTask);
 
-    addTask.addEventListener('click', async () => {
+    addTask.addEventListener('click', (e) => {
+      e.stopPropagation();
       // remove all the task input dialog box and add a new one
       this._removeTaskInputBox();
       addTask.style.display = 'none';

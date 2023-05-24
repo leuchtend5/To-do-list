@@ -4,19 +4,14 @@ import ProjectCounter from './project-counter';
 import '../components/new-project';
 
 const AddProjectHelper = {
-  init({
-    addButton,
-    container,
-    // counter,
-    projectForm,
-    overlay,
-    confirmButton,
-    cancelButton,
-    userInput,
-  }) {
-    // let totalProject = 0;
-
+  init({ addButton, container, projectForm, overlay, confirmButton, cancelButton, userInput }) {
     this._buttonDisable(confirmButton);
+
+    const formTitle = document.querySelector('.add-project-form p');
+    const saveProjectBtn = document.querySelector('.save-project-btn');
+
+    // create a let variable to save the result from "e"
+    let selectedProject;
 
     addButton.addEventListener('click', () => {
       userInput.value = '';
@@ -28,6 +23,9 @@ const AddProjectHelper = {
       }, 0);
 
       this._newProjectFormActive(projectForm, overlay);
+      formTitle.textContent = 'Add New Project';
+      saveProjectBtn.style.display = 'none';
+      confirmButton.style.display = 'block';
     });
 
     cancelButton.addEventListener('click', () => {
@@ -55,9 +53,38 @@ const AddProjectHelper = {
     userInput.addEventListener('input', () => {
       if (userInput.value !== '') {
         this._buttonEnable(confirmButton);
+        this._buttonEnable(saveProjectBtn);
       } else {
         this._buttonDisable(confirmButton);
+        this._buttonDisable(saveProjectBtn);
       }
+    });
+
+    container.addEventListener('edit-project', (e) => {
+      this._newProjectFormActive(projectForm, overlay);
+
+      formTitle.textContent = 'Change Project Name';
+
+      saveProjectBtn.style.display = 'block';
+      confirmButton.style.display = 'none';
+
+      userInput.value = e.detail.projectName;
+
+      // saving the data to variable that I created
+      selectedProject = e;
+    });
+
+    saveProjectBtn.addEventListener('click', () => {
+      const foundProject = CollectAllProjects.findProjectById(selectedProject.detail.projectId);
+      foundProject.setProjectName(userInput.value);
+      this._newProjectFormOff(projectForm, overlay);
+      this._buttonDisable(saveProjectBtn);
+
+      this._updateProjectNameFunction({
+        projectElement: selectedProject.target,
+        value: foundProject,
+        container,
+      });
     });
   },
 
@@ -87,6 +114,14 @@ const AddProjectHelper = {
     const newProject = document.createElement('new-project');
     newProject.projectData = value;
     container.appendChild(newProject);
+  },
+
+  _updateProjectNameFunction({ projectElement, value, container }) {
+    const title = document.querySelector('.menu-title');
+    const newProject = document.createElement('new-project');
+    newProject.projectData = value;
+    title.textContent = value.projectName;
+    container.replaceChild(newProject, projectElement);
   },
 };
 

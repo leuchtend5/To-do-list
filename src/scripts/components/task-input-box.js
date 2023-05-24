@@ -41,6 +41,7 @@ class TaskInputBox extends LitElement {
     this._updateUI(addBtn, cancelBtn, saveBtn);
     this._watchMediaChange(addBtn, cancelBtn, saveBtn);
     this._watchUserInput(taskName, addBtn, saveBtn);
+    this._test();
   }
 
   _autoFocus(element) {
@@ -128,6 +129,18 @@ class TaskInputBox extends LitElement {
         addBtn.classList.add('disable');
         saveBtn.disabled = true;
         saveBtn.classList.add('disable');
+      }
+    });
+  }
+
+  _test() {
+    document.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      if (!this.contains(e.target)) {
+        const addTask = document.querySelector('add-task');
+        this.remove();
+        addTask.style.display = 'flex';
       }
     });
   }

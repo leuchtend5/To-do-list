@@ -24,8 +24,12 @@ class NewProject extends LitElement {
     this._projectId = data.id;
   }
 
-  get getProjectName() {
+  get projectName() {
     return this._oldProjectName;
+  }
+
+  get projectId() {
+    return this._projectId;
   }
 
   _limitProjectName() {
@@ -40,7 +44,16 @@ class NewProject extends LitElement {
     const editBtn = this.querySelector('.edit-btn');
 
     editBtn.addEventListener('click', () => {
-      console.log(CollectAllProjects.allProjects);
+      const editEvent = new CustomEvent('edit-project', {
+        bubbles: true,
+        composed: true,
+        detail: {
+          projectId: this._projectId,
+          projectName: this._oldProjectName,
+        },
+      });
+
+      this.dispatchEvent(editEvent);
     });
   }
 

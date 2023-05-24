@@ -179,6 +179,7 @@ header .hamburger-menu {
   font-size: 1.4rem;
   transition: width 0.15s ease-in-out;
   z-index: 2;
+  word-wrap: break-word;
 }
 .main-content .content.active {
   margin-left: 306px;
@@ -476,7 +477,11 @@ body {
 .add-project-form button:active {
   filter: brightness(80%);
 }
-.add-project-form .add-project-name-btn {
+.add-project-form .save-project-btn {
+  display: none;
+}
+.add-project-form .add-project-name-btn,
+.add-project-form .save-project-btn {
   background-color: #ccd5ae;
 }
 .add-project-form #project-name {
@@ -490,11 +495,13 @@ body {
   gap: 15px;
   justify-content: center;
 }
-.add-project-form .add-project-name-btn.disable {
+.add-project-form .add-project-name-btn.disable,
+.add-project-form .save-project-btn.disable {
   cursor: not-allowed;
   opacity: 0.6;
 }
-.add-project-form .add-project-name-btn.disable:hover {
+.add-project-form .add-project-name-btn.disable:hover,
+.add-project-form .save-project-btn.disable:hover {
   filter: brightness(100%);
 }
 

@@ -41,7 +41,7 @@ const TaskCounter = {
       const projectElement = document.querySelectorAll('new-project');
       projectElement.forEach((project) => {
         const totalTasks = project.querySelector('.total-tasks');
-        const foundProject = CollectAllProjects.findProjectByName(project.getProjectName);
+        const foundProject = CollectAllProjects.findProjectByName(project.projectName);
 
         this._updateUI(foundProject.allTasks, totalTasks);
       });
