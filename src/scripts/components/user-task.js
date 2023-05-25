@@ -3,6 +3,7 @@ import { format } from 'date-fns';
 import CollectAllProjects from '../data/collect-all-projects';
 import CollectAllTask from '../data/collect-all-tasks';
 import TaskCounter from '../utils/task-counter';
+import TaskPriorityColor from '../utils/task-color';
 // import './task-input-box';
 
 class UserTask extends LitElement {
@@ -19,6 +20,8 @@ class UserTask extends LitElement {
     this._editTask();
     this._deleteTask();
     this._dateUI();
+    // this._taskPriorityColor();
+    TaskPriorityColor(this._currentFlag, this);
   }
 
   set taskData(data) {
@@ -26,7 +29,26 @@ class UserTask extends LitElement {
     this._taskName = data.name;
     this._taskDate = data.date;
     this._taskDescription = data.description;
+    this._currentFlag = data.priorityFlag;
   }
+
+  // _taskPriorityColor() {
+  //   const taskColor = this.querySelector('.fa-circle');
+
+  //   switch (this._currentFlag) {
+  //     case '<i class="fa-solid fa-flag p-one"></i> Priority 1':
+  //       taskColor.style.color = 'red';
+  //       break;
+  //     case '<i class="fa-solid fa-flag p-two"></i> Priority 2':
+  //       taskColor.style.color = 'orange';
+  //       break;
+  //     case '<i class="fa-solid fa-flag p-three"></i> Priority 3':
+  //       taskColor.style.color = 'blue';
+  //       break;
+  //     default:
+  //       taskColor.style.color = 'green';
+  //   }
+  // }
 
   _deleteTask() {
     const deleteBtn = this.querySelector('.delete-btn');
@@ -89,7 +111,7 @@ class UserTask extends LitElement {
   render() {
     return html`
       <div class="task-wrapper">
-        <span>⏺</span>
+        <span><i class="fa-sharp fa-regular fa-circle"></i></span>
         <div>
           <p class="task-input-name">${this._taskName}</p>
           <p class="task-desc">${this._taskDescription}</p>

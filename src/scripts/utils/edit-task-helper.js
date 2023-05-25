@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 import '../components/task-input-box';
 import CollectAllProjects from '../data/collect-all-projects';
 import TaskCounter from './task-counter';
+import TaskPriorityColor from './task-color';
 
 const EditTaskHelper = {
   async init({ container, data, title }) {
@@ -86,11 +87,12 @@ const EditTaskHelper = {
         name,
         date,
         description,
+        currentPriority,
       });
     });
   },
 
-  _updateTaskUI({ name, date, description }) {
+  _updateTaskUI({ name, date, description, currentPriority }) {
     const nameElement = this._selectedTask.querySelector('.task-input-name');
     const dateElement = this._selectedTask.querySelector('.task-due-date');
     const descriptionElement = this._selectedTask.querySelector('.task-desc');
@@ -105,6 +107,8 @@ const EditTaskHelper = {
       dateContainer.style.display = 'flex';
       dateElement.textContent = this._formattedDate(date);
     }
+
+    TaskPriorityColor(currentPriority.innerHTML, this._selectedTask);
 
     this._selectedTask.style.display = 'block';
 

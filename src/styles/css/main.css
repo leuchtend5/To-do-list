@@ -236,7 +236,7 @@ header .hamburger-menu {
 }
 .main-content .user-tasks span {
   font-size: 1.2rem;
-  color: red;
+  cursor: pointer;
 }
 .main-content .add-task {
   width: var(--width-title);
