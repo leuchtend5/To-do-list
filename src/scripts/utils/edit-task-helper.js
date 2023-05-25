@@ -20,6 +20,7 @@ const EditTaskHelper = {
     const name = document.querySelector('#task-name');
     const date = document.querySelector('#due-date');
     const description = document.querySelector('#description');
+    const currentPriority = document.querySelector('.current-flag > p');
     const addBtn = document.querySelector('.add-btn');
     const cancelBtn = document.querySelector('.cancel-btn');
     const saveBtn = document.querySelector('.save-btn');
@@ -35,8 +36,8 @@ const EditTaskHelper = {
       name,
       date,
       description,
+      currentPriority,
       data: foundTask,
-      addBtn,
     });
 
     this._cancelFunction(cancelBtn);
@@ -46,6 +47,7 @@ const EditTaskHelper = {
       name,
       date,
       description,
+      currentPriority,
     });
   },
 
@@ -66,17 +68,19 @@ const EditTaskHelper = {
     });
   },
 
-  _existedData({ name, date, description, data }) {
+  _existedData({ name, date, description, currentPriority, data }) {
     name.value = data.name;
     date.value = data.date;
     description.value = data.description;
+    currentPriority.innerHTML = data.priorityFlag;
   },
 
-  _saveTask({ saveBtn, data, name, date, description }) {
+  _saveTask({ saveBtn, data, name, date, description, currentPriority }) {
     saveBtn.addEventListener('click', () => {
       data.setTaskName(name.value);
       data.setTaskDate(date.value);
       data.setTaskDescription(description.value);
+      data.setPriorityFlag(currentPriority.innerHTML);
 
       this._updateTaskUI({
         name,

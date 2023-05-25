@@ -26,7 +26,7 @@ class TaskInputBox extends LitElement {
     const taskDate = this.querySelector('#due-date');
     const priorityBtn = this.querySelector('.priority');
     const flagDropDown = this.querySelector('.flag-dropdown');
-    const currentPriority = document.querySelector('.current-flag > p');
+    const currentPriority = this.querySelector('.current-flag > p');
     const addBtn = this.querySelector('.add-btn');
     const cancelBtn = this.querySelector('.cancel-btn');
     const saveBtn = this.querySelector('.save-btn');

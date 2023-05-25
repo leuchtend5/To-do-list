@@ -22,6 +22,10 @@ class CreateNewTask {
     this.description = description;
   }
 
+  setPriorityFlag(flag) {
+    this.priorityFlag = flag;
+  }
+
   setTaskStatus(isComplete) {
     this.isComplete = isComplete;
   }
