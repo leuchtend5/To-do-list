@@ -1,3 +1,6 @@
+import ShowTaskHelper from '../../utils/show-usertask-helper';
+import CollectAllTask from '../../data/collect-all-tasks';
+
 const CompletedTasksPage = {
   async render() {
     return `
@@ -8,7 +11,8 @@ const CompletedTasksPage = {
   },
 
   async afterRender() {
-    //
+    const userTasks = document.querySelector('.user-tasks');
+    ShowTaskHelper.showAllTask(userTasks, CollectAllTask.filterByStatus());
   },
 };
 

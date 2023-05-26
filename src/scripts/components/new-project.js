@@ -25,6 +25,11 @@ class NewProject extends LitElement {
         taskInputBox.remove();
         addTask.style.display = 'flex';
       }
+
+      const userTask = document.querySelectorAll('user-task');
+      userTask.forEach((task) => {
+        task.style.display = 'block';
+      });
     });
   }
 
@@ -54,6 +59,11 @@ class NewProject extends LitElement {
     const editBtn = this.querySelector('.edit-btn');
 
     editBtn.addEventListener('click', () => {
+      const userTask = document.querySelectorAll('user-task');
+      userTask.forEach((task) => {
+        task.style.display = 'block';
+      });
+
       const editEvent = new CustomEvent('edit-project', {
         bubbles: true,
         composed: true,
@@ -79,6 +89,7 @@ class NewProject extends LitElement {
 
       this.remove();
       ProjectCounter.init();
+      // window.location.hash = '/inbox';
     });
   }
 

@@ -8,13 +8,20 @@ const TaskCounter = {
     this._taskCounterToday();
     this._taskCounterUpcoming();
     this._taskCounterEachProject();
+    this._taskCounterCompletedTask();
+  },
+
+  _taskCounterCompletedTask() {
+    const counterElement = document.querySelector('.total-tasks.completed');
+
+    this._updateUI(CollectAllTask.filterByStatus(), counterElement);
   },
 
   _taskCounterInbox() {
     const counterElement = document.querySelector('.total-tasks.inbox');
     const foundProject = CollectAllProjects.findProjectByName('inbox');
 
-    this._updateUI(foundProject.allTasks, counterElement);
+    this._updateUI(foundProject.getUnfinishedTasks(), counterElement);
   },
 
   _taskCounterToday() {
@@ -43,7 +50,7 @@ const TaskCounter = {
         const totalTasks = project.querySelector('.total-tasks');
         const foundProject = CollectAllProjects.findProjectByName(project.projectName);
 
-        this._updateUI(foundProject.allTasks, totalTasks);
+        this._updateUI(foundProject.getUnfinishedTasks(), totalTasks);
       });
     }
   },

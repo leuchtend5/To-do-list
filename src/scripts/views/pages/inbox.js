@@ -46,7 +46,10 @@ const InboxPage = {
       });
     });
 
-    ShowTaskHelper.showAllTask(userTasks, CollectAllProjects.findProjectByName(title).allTasks);
+    ShowTaskHelper.showAllTask(
+      userTasks,
+      CollectAllProjects.findProjectByName(title).getUnfinishedTasks(),
+    );
   },
 
   _removeTaskInputBox() {

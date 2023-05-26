@@ -9,16 +9,20 @@ class CollectAllTask {
   }
 
   static filterByToday(date) {
-    return this.allTasks.filter((task) => task.date === date);
+    return this.allTasks
+      .filter((task) => task.isComplete === false)
+      .filter((task) => task.date === date);
   }
 
   static filterByUpcoming() {
     // parse string to date using parseISO
-    return this.allTasks.filter((task) => isFuture(parseISO(task.date)) === true);
+    return this.allTasks
+      .filter((task) => task.isComplete === false)
+      .filter((task) => isFuture(parseISO(task.date)) === true);
   }
 
   static filterByStatus() {
-    //
+    return this.allTasks.filter((task) => task.isComplete === true);
   }
 
   static deleteTask(id) {

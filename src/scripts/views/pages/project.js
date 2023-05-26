@@ -28,6 +28,12 @@ const ProjectPage = {
 
       // remove all the task input dialog box and add a new one
       this._removeTaskInputBox();
+
+      const userTask = document.querySelectorAll('user-task');
+      userTask.forEach((task) => {
+        task.style.display = 'block';
+      });
+
       addTask.style.display = 'none';
       const taskInputBox = document.createElement('task-input');
       taskInputBox.taskContainer = userTasks;
@@ -47,7 +53,7 @@ const ProjectPage = {
 
     ShowTaskHelper.showAllTask(
       userTasks,
-      CollectAllProjects.findProjectByName(title.textContent).allTasks,
+      CollectAllProjects.findProjectByName(title.textContent).getUnfinishedTasks(),
     );
   },
 

@@ -74,7 +74,6 @@ class TaskInputBox extends LitElement {
         CollectAllTask.addNewTask(newTask);
         ShowTaskHelper.showTask(this._taskContainer, newTask);
         TaskCounter.init();
-        console.log(CollectAllTask.allTasks);
       }
 
       this._resetInputValue({ taskName, taskDate, taskDescription, currentPriority, addBtn });

@@ -4,7 +4,6 @@ import CollectAllProjects from '../data/collect-all-projects';
 import CollectAllTask from '../data/collect-all-tasks';
 import TaskCounter from '../utils/task-counter';
 import TaskPriorityColor from '../utils/task-color';
-// import './task-input-box';
 
 class UserTask extends LitElement {
   constructor() {
@@ -20,8 +19,8 @@ class UserTask extends LitElement {
     this._editTask();
     this._deleteTask();
     this._dateUI();
-    // this._taskPriorityColor();
     TaskPriorityColor(this._currentFlag, this);
+    this._completeTask();
   }
 
   set taskData(data) {
@@ -30,25 +29,19 @@ class UserTask extends LitElement {
     this._taskDate = data.date;
     this._taskDescription = data.description;
     this._currentFlag = data.priorityFlag;
+    // this._isComplete = data.isComplete;
   }
 
-  // _taskPriorityColor() {
-  //   const taskColor = this.querySelector('.fa-circle');
+  _completeTask() {
+    const completeBtn = this.querySelector('.fa-circle');
 
-  //   switch (this._currentFlag) {
-  //     case '<i class="fa-solid fa-flag p-one"></i> Priority 1':
-  //       taskColor.style.color = 'red';
-  //       break;
-  //     case '<i class="fa-solid fa-flag p-two"></i> Priority 2':
-  //       taskColor.style.color = 'orange';
-  //       break;
-  //     case '<i class="fa-solid fa-flag p-three"></i> Priority 3':
-  //       taskColor.style.color = 'blue';
-  //       break;
-  //     default:
-  //       taskColor.style.color = 'green';
-  //   }
-  // }
+    completeBtn.addEventListener('click', () => {
+      const foundTask = CollectAllTask.findTaskById(this._taskId);
+      foundTask.setTaskStatus(true);
+      this.remove();
+      TaskCounter.init();
+    });
+  }
 
   _deleteTask() {
     const deleteBtn = this.querySelector('.delete-btn');
@@ -56,10 +49,10 @@ class UserTask extends LitElement {
     deleteBtn.addEventListener('click', () => {
       // delete task from project instance
       // find project that contain the task ID
-      const findTask = CollectAllProjects.allProjects.find((project) =>
+      const foundTask = CollectAllProjects.allProjects.find((project) =>
         project.allTasks.some((task) => task.id === this._taskId),
       );
-      findTask.deleteTask(this._taskId);
+      foundTask.deleteTask(this._taskId);
 
       // delete task from allTask static class
       CollectAllTask.deleteTask(this._taskId);

@@ -7,6 +7,10 @@ class CreateNewProject {
     this.allTasks = [];
   }
 
+  getUnfinishedTasks() {
+    return this.allTasks.filter((task) => task.isComplete === false);
+  }
+
   setProjectName(name) {
     this.projectName = name;
     // return this.projectName;
