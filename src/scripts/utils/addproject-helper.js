@@ -1,7 +1,9 @@
 import CreateNewProject from '../data/create-new-project';
-import CollectAllProjects from '../data/collect-all-projects';
+// import CollectAllProjects from '../data/collect-all-projects';
 import ProjectCounter from './project-counter';
+import ProjectStorage from '../data/project-storage';
 import '../components/new-project';
+import TaskCounter from './task-counter';
 
 const AddProjectHelper = {
   init({ addButton, container, projectForm, overlay, confirmButton, cancelButton, userInput }) {
@@ -10,7 +12,7 @@ const AddProjectHelper = {
     const formTitle = document.querySelector('.add-project-form p');
     const saveProjectBtn = document.querySelector('.save-project-btn');
 
-    // create a let variable to save the result from "e"
+    // create a let variable to save the result from "event listener"
     let selectedProject;
 
     addButton.addEventListener('click', () => {
@@ -28,19 +30,41 @@ const AddProjectHelper = {
       confirmButton.style.display = 'block';
     });
 
+    // removing inbox project
+    // and iterate other project into our web
+    const projectList = ProjectStorage.getAllProjects();
+    projectList.splice(0, 1);
+    projectList.forEach((project) => {
+      this._addNewProjectFunction({
+        container,
+        value: project,
+      });
+    });
+    // ProjectStorage.getAllProjects().forEach((project) => {
+    //   this._addNewProjectFunction({
+    //     container,
+    //     value: project,
+    //   });
+    // });
+
     cancelButton.addEventListener('click', () => {
       this._newProjectFormOff(projectForm, overlay);
     });
 
     confirmButton.addEventListener('click', () => {
-      if (CollectAllProjects.allProjects.length < 6) {
+      if (ProjectStorage.getAllProjects().length < 6) {
         const project = new CreateNewProject(userInput.value);
-        CollectAllProjects.addNewProject(project);
-
+        ProjectStorage.addNewProject(project);
+        // CollectAllProjects.addNewProject(project);
+        // LocalStorage.saveAllProjects(CollectAllProjects.allProjects);
         this._addNewProjectFunction({
           container,
-          value: project,
+          value: ProjectStorage.getProjectById(project.id),
         });
+        // this._addNewProjectFunction({
+        //   container,
+        //   value: LocalStorage.getProject(project.id),
+        // });
 
         ProjectCounter.init();
 
@@ -68,21 +92,26 @@ const AddProjectHelper = {
       saveProjectBtn.style.display = 'block';
       confirmButton.style.display = 'none';
 
-      userInput.value = e.detail.projectName;
+      userInput.value = e.detail.project.projectName;
 
       // saving the data to variable that I created
       selectedProject = e;
     });
 
     saveProjectBtn.addEventListener('click', () => {
-      const foundProject = CollectAllProjects.findProjectById(selectedProject.detail.projectId);
-      foundProject.setProjectName(userInput.value);
+      // const foundProject = CollectAllProjects.findProjectById(selectedProject.detail.projectId);
+      // foundProject.setProjectName(userInput.value);
+      // LocalStorage.saveAllProjects(CollectAllProjects.allProjects);
+
+      // const foundProject = ProjectStorage.getProjectById(selectedProject.detail.project.id);
+      ProjectStorage.saveNewProjectName(selectedProject.detail.project.id, userInput.value);
+
       this._newProjectFormOff(projectForm, overlay);
       this._buttonDisable(saveProjectBtn);
 
       this._updateProjectNameFunction({
         projectElement: selectedProject.target,
-        value: foundProject,
+        value: ProjectStorage.getProjectById(selectedProject.detail.project.id),
         container,
       });
     });
@@ -122,6 +151,7 @@ const AddProjectHelper = {
     newProject.projectData = value;
     title.textContent = value.projectName;
     container.replaceChild(newProject, projectElement);
+    TaskCounter.init();
   },
 };
 

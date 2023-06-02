@@ -1,12 +1,16 @@
 import { format } from 'date-fns';
 import '../components/task-input-box';
-import CollectAllProjects from '../data/collect-all-projects';
+// import CollectAllProjects from '../data/collect-all-projects';
 import TaskCounter from './task-counter';
 import TaskPriorityColor from './task-color';
+import TaskStorage from '../data/task-storage';
+// import ProjectStorage from '../data/project-storage';
+// import LocalStorage from './local-storage';
 
 const EditTaskHelper = {
-  async init({ container, data, title }) {
-    this._findSelectedTask(data);
+  async init({ container, data }) {
+    // this._findSelectedTask(data);
+    this._selectedTask = data.target;
 
     // create input dialog box when user click edit-btn
     const taskInputBox = document.createElement('task-input');
@@ -25,26 +29,27 @@ const EditTaskHelper = {
     const addBtn = document.querySelector('.add-btn');
     const cancelBtn = document.querySelector('.cancel-btn');
     const saveBtn = document.querySelector('.save-btn');
-    const { taskId } = data.detail;
+    const { id } = data.detail.task;
 
     addBtn.style.display = 'none';
     saveBtn.style.display = 'block';
 
-    const foundProject = CollectAllProjects.findProjectByName(title);
-    const foundTask = foundProject.findTask(taskId);
+    // const foundProject = CollectAllProjects.findProjectByName(title);
+    // const foundProject = ProjectStorage.getProjectByName(title);
+    // const foundTask = foundProject.findTask(taskId);
 
     this._existedData({
       name,
       date,
       description,
       currentPriority,
-      data: foundTask,
+      data: data.detail.task,
     });
 
     this._cancelFunction(cancelBtn);
     this._saveTask({
       saveBtn,
-      data: foundTask,
+      id,
       name,
       date,
       description,
@@ -52,16 +57,16 @@ const EditTaskHelper = {
     });
   },
 
-  _findSelectedTask(data) {
-    const allTasks = document.querySelectorAll('user-task');
-    const newArray = Array.from(allTasks);
-    const index = newArray.findIndex((task) => task._taskId === data.detail.taskId);
-    this._selectedTask = allTasks[index];
+  // _findSelectedTask(data) {
+  //   const allTasks = document.querySelectorAll('user-task');
+  //   const newArray = Array.from(allTasks);
+  //   const index = newArray.findIndex((task) => task._taskId === data.detail.taskId);
+  //   this._selectedTask = allTasks[index];
 
-    allTasks.forEach((task) => {
-      task.style.display = 'block';
-    });
-  },
+  //   allTasks.forEach((task) => {
+  //     task.style.display = 'block';
+  //   });
+  // },
 
   _cancelFunction(button) {
     button.addEventListener('click', () => {
@@ -76,12 +81,12 @@ const EditTaskHelper = {
     currentPriority.innerHTML = data.priorityFlag;
   },
 
-  _saveTask({ saveBtn, data, name, date, description, currentPriority }) {
+  _saveTask({ saveBtn, id, name, date, description, currentPriority }) {
     saveBtn.addEventListener('click', () => {
-      data.setTaskName(name.value);
-      data.setTaskDate(date.value);
-      data.setTaskDescription(description.value);
-      data.setPriorityFlag(currentPriority.innerHTML);
+      TaskStorage.setNewTaskName(id, name.value);
+      TaskStorage.setNewTaskDate(id, date.value);
+      TaskStorage.setNewTaskDescription(id, description.value);
+      TaskStorage.setNewTaskPriorityFlag(id, currentPriority.innerHTML);
 
       this._updateTaskUI({
         name,

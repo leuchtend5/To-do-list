@@ -1,8 +1,10 @@
 import '../../components/add-task';
 import '../../components/task-input-box';
 import ShowTaskHelper from '../../utils/show-usertask-helper';
-import CollectAllProjects from '../../data/collect-all-projects';
 import EditTaskHelper from '../../utils/edit-task-helper';
+// import TaskStorage from '../../data/task-storage';
+import ProjectStorage from '../../data/project-storage';
+import TaskStorage from '../../data/task-storage';
 
 const InboxPage = {
   async render() {
@@ -18,6 +20,7 @@ const InboxPage = {
     const title = document.querySelector('.menu-title').textContent.toLowerCase();
     const addTask = document.createElement('add-task');
     userTasks.insertAdjacentElement('afterend', addTask);
+    const project = ProjectStorage.getProjectByName(title);
 
     addTask.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -42,14 +45,10 @@ const InboxPage = {
       EditTaskHelper.init({
         container: userTasks,
         data: e,
-        title,
       });
     });
 
-    ShowTaskHelper.showAllTask(
-      userTasks,
-      CollectAllProjects.findProjectByName(title).getUnfinishedTasks(),
-    );
+    ShowTaskHelper.showAllTask(userTasks, TaskStorage.filterUnfinishedTaskByProjectId(project.id));
   },
 
   _removeTaskInputBox() {

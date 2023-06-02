@@ -1,5 +1,6 @@
 import ShowTaskHelper from '../../utils/show-usertask-helper';
-import CollectAllTask from '../../data/collect-all-tasks';
+// import CollectAllTask from '../../data/collect-all-tasks';
+import TaskStorage from '../../data/task-storage';
 
 const UpcomingPage = {
   async render() {
@@ -12,7 +13,7 @@ const UpcomingPage = {
 
   async afterRender() {
     const userTasks = document.querySelector('.user-tasks');
-    ShowTaskHelper.showAllTask(userTasks, CollectAllTask.filterByUpcoming());
+    ShowTaskHelper.showAllTask(userTasks, TaskStorage.filterTaskByUpcoming());
   },
 };
 

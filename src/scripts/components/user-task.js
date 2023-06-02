@@ -1,9 +1,9 @@
 import { LitElement, html } from 'lit';
 import { format } from 'date-fns';
-import CollectAllProjects from '../data/collect-all-projects';
-import CollectAllTask from '../data/collect-all-tasks';
 import TaskCounter from '../utils/task-counter';
 import TaskPriorityColor from '../utils/task-color';
+import TaskStorage from '../data/task-storage';
+// import ProjectStorage from '../data/project-storage';
 
 class UserTask extends LitElement {
   constructor() {
@@ -29,15 +29,20 @@ class UserTask extends LitElement {
     this._taskDate = data.date;
     this._taskDescription = data.description;
     this._currentFlag = data.priorityFlag;
-    // this._isComplete = data.isComplete;
   }
 
   _completeTask() {
     const completeBtn = this.querySelector('.fa-circle');
 
     completeBtn.addEventListener('click', () => {
-      const foundTask = CollectAllTask.findTaskById(this._taskId);
-      foundTask.setTaskStatus(true);
+      // const foundTask = CollectAllTask.findTaskById(this._taskId);
+      // foundTask.setTaskStatus(true);
+
+      // save new task status in project storage
+      // const foundTask = ProjectStorage.getTaskById(this._taskId);
+      // console.log(foundTask);
+      TaskStorage.setNewTaskStatus(this._taskId, true);
+
       this.remove();
       TaskCounter.init();
     });
@@ -49,14 +54,17 @@ class UserTask extends LitElement {
     deleteBtn.addEventListener('click', () => {
       // delete task from project instance
       // find project that contain the task ID
-      const foundTask = CollectAllProjects.allProjects.find((project) =>
-        project.allTasks.some((task) => task.id === this._taskId),
-      );
-      foundTask.deleteTask(this._taskId);
+      // const foundTask = CollectAllProjects.allProjects.find((project) =>
+      //   project.allTasks.some((task) => task.id === this._taskId),
+      // );
+      // foundTask.deleteTask(this._taskId);
 
       // delete task from allTask static class
-      CollectAllTask.deleteTask(this._taskId);
+      // CollectAllTask.deleteTask(this._taskId);
+      // LocalStorage.saveAllTasks(CollectAllTask.allTasks);
+      // LocalStorage.saveAllProjects(CollectAllProjects.allProjects);
 
+      TaskStorage.deleteTask(this._taskId);
       this.remove();
       TaskCounter.init();
     });
@@ -71,10 +79,11 @@ class UserTask extends LitElement {
         bubbles: true,
         composed: true,
         detail: {
-          taskId: this._taskId,
-          taskName: this._taskName,
-          taskDate: this._taskDate,
-          taskDescription: this._taskDescription,
+          // taskId: this._taskId,
+          // taskName: this._taskName,
+          // taskDate: this._taskDate,
+          // taskDescription: this._taskDescription,
+          task: TaskStorage.getTaskById(this._taskId),
         },
       });
       this.dispatchEvent(editEvent);

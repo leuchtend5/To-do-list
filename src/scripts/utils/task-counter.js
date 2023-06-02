@@ -1,6 +1,7 @@
 import { format } from 'date-fns';
-import CollectAllProjects from '../data/collect-all-projects';
-import CollectAllTask from '../data/collect-all-tasks';
+
+import TaskStorage from '../data/task-storage';
+import ProjectStorage from '../data/project-storage';
 
 const TaskCounter = {
   init() {
@@ -14,21 +15,21 @@ const TaskCounter = {
   _taskCounterCompletedTask() {
     const counterElement = document.querySelector('.total-tasks.completed');
 
-    this._updateUI(CollectAllTask.filterByStatus(), counterElement);
+    this._updateUI(TaskStorage.filterCompletedTask(), counterElement);
   },
 
   _taskCounterInbox() {
     const counterElement = document.querySelector('.total-tasks.inbox');
-    const foundProject = CollectAllProjects.findProjectByName('inbox');
+    const foundProject = ProjectStorage.getProjectByName('inbox');
 
-    this._updateUI(foundProject.getUnfinishedTasks(), counterElement);
+    this._updateUI(TaskStorage.filterUnfinishedTaskByProjectId(foundProject.id), counterElement);
   },
 
   _taskCounterToday() {
     const counterElement = document.querySelector('.total-tasks.today');
     const todayDate = format(new Date(), 'yyyy-MM-dd');
 
-    const taskArray = CollectAllTask.filterByToday(todayDate);
+    const taskArray = TaskStorage.filterTaskByToday(todayDate);
 
     this._updateUI(taskArray, counterElement);
   },
@@ -36,21 +37,20 @@ const TaskCounter = {
   _taskCounterUpcoming() {
     const counterElement = document.querySelector('.total-tasks.upcoming');
 
-    this._updateUI(CollectAllTask.filterByUpcoming(), counterElement);
+    this._updateUI(TaskStorage.filterTaskByUpcoming(), counterElement);
   },
 
   _taskCounterEachProject() {
     const projectList = document.querySelector('.project-list');
 
     // iterate array all project and select total task element
-    // then find the project by their name
     if (projectList.children.length !== 0) {
       const projectElement = document.querySelectorAll('new-project');
-      projectElement.forEach((project) => {
-        const totalTasks = project.querySelector('.total-tasks');
-        const foundProject = CollectAllProjects.findProjectByName(project.projectName);
+      projectElement.forEach(async (project) => {
+        await customElements.whenDefined('new-project');
 
-        this._updateUI(foundProject.getUnfinishedTasks(), totalTasks);
+        const totalTasks = project.querySelector('.total-tasks');
+        this._updateUI(TaskStorage.filterUnfinishedTaskByProjectId(project._projectId), totalTasks);
       });
     }
   },

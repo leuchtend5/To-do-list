@@ -1,10 +1,10 @@
 import { LitElement, html } from 'lit';
 import mediaQuery from '../utils/watch-media';
-import CollectAllProjects from '../data/collect-all-projects';
-import CollectAllTask from '../data/collect-all-tasks';
 import CreateNewTask from '../data/create-new-task';
 import TaskCounter from '../utils/task-counter';
 import ShowTaskHelper from '../utils/show-usertask-helper';
+import TaskStorage from '../data/task-storage';
+import ProjectStorage from '../data/project-storage';
 
 class TaskInputBox extends LitElement {
   constructor() {
@@ -62,17 +62,18 @@ class TaskInputBox extends LitElement {
   _addTask({ addBtn, taskName, taskDate, taskDescription, currentPriority, title }) {
     addBtn.addEventListener('click', () => {
       if (!addBtn.disabled) {
-        const foundProject = CollectAllProjects.findProjectByName(title);
         const newTask = new CreateNewTask({
           name: taskName.value,
           date: taskDate.value,
           description: taskDescription.value,
           priorityFlag: currentPriority.innerHTML,
           isComplete: false,
+          projectId: ProjectStorage.getProjectByName(title).id,
         });
-        foundProject.setNewTask(newTask);
-        CollectAllTask.addNewTask(newTask);
-        ShowTaskHelper.showTask(this._taskContainer, newTask);
+
+        TaskStorage.addNewTask(newTask);
+
+        ShowTaskHelper.showTask(this._taskContainer, TaskStorage.getTaskById(newTask.id));
         TaskCounter.init();
       }
 

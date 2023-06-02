@@ -1,7 +1,9 @@
 import UrlParser from '../../routes/url-parser';
-import CollectAllProjects from '../../data/collect-all-projects';
+// import CollectAllProjects from '../../data/collect-all-projects';
+import ProjectStorage from '../../data/project-storage';
 import ShowTaskHelper from '../../utils/show-usertask-helper';
 import EditTaskHelper from '../../utils/edit-task-helper';
+import TaskStorage from '../../data/task-storage';
 
 const ProjectPage = {
   async render() {
@@ -16,7 +18,7 @@ const ProjectPage = {
     // trying to find project name by searching project's id
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const title = document.querySelector('.menu-title');
-    const findProject = CollectAllProjects.findProjectById(url.id);
+    const findProject = ProjectStorage.getProjectById(url.id);
     title.textContent = findProject.projectName;
 
     const userTasks = document.querySelector('.user-tasks');
@@ -51,10 +53,7 @@ const ProjectPage = {
       });
     });
 
-    ShowTaskHelper.showAllTask(
-      userTasks,
-      CollectAllProjects.findProjectByName(title.textContent).getUnfinishedTasks(),
-    );
+    ShowTaskHelper.showAllTask(userTasks, TaskStorage.filterUnfinishedTaskByProjectId(url.id));
   },
 
   _removeTaskInputBox() {
