@@ -1,5 +1,4 @@
 import CreateNewProject from '../data/create-new-project';
-// import CollectAllProjects from '../data/collect-all-projects';
 import ProjectCounter from './project-counter';
 import ProjectStorage from '../data/project-storage';
 import '../components/new-project';
@@ -40,12 +39,6 @@ const AddProjectHelper = {
         value: project,
       });
     });
-    // ProjectStorage.getAllProjects().forEach((project) => {
-    //   this._addNewProjectFunction({
-    //     container,
-    //     value: project,
-    //   });
-    // });
 
     cancelButton.addEventListener('click', () => {
       this._newProjectFormOff(projectForm, overlay);
@@ -55,16 +48,10 @@ const AddProjectHelper = {
       if (ProjectStorage.getAllProjects().length < 6) {
         const project = new CreateNewProject(userInput.value);
         ProjectStorage.addNewProject(project);
-        // CollectAllProjects.addNewProject(project);
-        // LocalStorage.saveAllProjects(CollectAllProjects.allProjects);
         this._addNewProjectFunction({
           container,
           value: ProjectStorage.getProjectById(project.id),
         });
-        // this._addNewProjectFunction({
-        //   container,
-        //   value: LocalStorage.getProject(project.id),
-        // });
 
         ProjectCounter.init();
 
@@ -99,11 +86,6 @@ const AddProjectHelper = {
     });
 
     saveProjectBtn.addEventListener('click', () => {
-      // const foundProject = CollectAllProjects.findProjectById(selectedProject.detail.projectId);
-      // foundProject.setProjectName(userInput.value);
-      // LocalStorage.saveAllProjects(CollectAllProjects.allProjects);
-
-      // const foundProject = ProjectStorage.getProjectById(selectedProject.detail.project.id);
       ProjectStorage.saveNewProjectName(selectedProject.detail.project.id, userInput.value);
 
       this._newProjectFormOff(projectForm, overlay);

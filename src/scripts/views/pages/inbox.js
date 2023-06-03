@@ -2,7 +2,6 @@ import '../../components/add-task';
 import '../../components/task-input-box';
 import ShowTaskHelper from '../../utils/show-usertask-helper';
 import EditTaskHelper from '../../utils/edit-task-helper';
-// import TaskStorage from '../../data/task-storage';
 import ProjectStorage from '../../data/project-storage';
 import TaskStorage from '../../data/task-storage';
 

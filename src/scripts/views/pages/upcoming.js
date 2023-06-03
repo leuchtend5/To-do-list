@@ -1,6 +1,6 @@
 import ShowTaskHelper from '../../utils/show-usertask-helper';
-// import CollectAllTask from '../../data/collect-all-tasks';
 import TaskStorage from '../../data/task-storage';
+import EditTaskHelper from '../../utils/edit-task-helper';
 
 const UpcomingPage = {
   async render() {
@@ -13,7 +13,28 @@ const UpcomingPage = {
 
   async afterRender() {
     const userTasks = document.querySelector('.user-tasks');
-    ShowTaskHelper.showAllTask(userTasks, TaskStorage.filterTaskByUpcoming());
+
+    userTasks.addEventListener('edit-task', (e) => {
+      this._removeTaskInputBox();
+
+      EditTaskHelper.init({
+        container: userTasks,
+        data: e,
+      });
+    });
+
+    if (TaskStorage.filterTaskByUpcoming().length === 0) {
+      userTasks.textContent = 'No tasks found';
+    } else {
+      ShowTaskHelper.showAllTask(userTasks, TaskStorage.filterTaskByUpcoming());
+    }
+  },
+
+  _removeTaskInputBox() {
+    const existingTaskInput = document.querySelector('task-input');
+    if (existingTaskInput) {
+      existingTaskInput.remove();
+    }
   },
 };
 

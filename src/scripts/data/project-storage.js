@@ -1,7 +1,6 @@
 import CreateNewProject from './create-new-project';
 
 class ProjectStorage {
-  // static allProjects = [new CreateNewProject('inbox')];
   static allProjects = [];
 
   static saveAllProjects(data) {
@@ -35,15 +34,6 @@ class ProjectStorage {
     this.saveAllProjects(this.allProjects);
   }
 
-  // static addNewTask(projectName, task) {
-  //   const allProjects = this.getAllProjects();
-  //   const foundProject = allProjects.find((project) => project.projectName === projectName);
-
-  //   foundProject.setNewTask(task);
-
-  //   this.saveAllProjects(allProjects);
-  // }
-
   static saveNewProjectName(id, newProjectName) {
     const allProjects = this.getAllProjects();
     const foundProject = allProjects.find((project) => project.id === id);
@@ -52,15 +42,6 @@ class ProjectStorage {
 
     this.saveAllProjects(allProjects);
   }
-
-  // static deleteTask(projectId, taskId) {
-  //   const allProjects = this.getAllProjects();
-  //   const foundProject = allProjects.find((project) => project.id === projectId);
-
-  //   foundProject.deleteTask(taskId);
-
-  //   this.saveAllProjects(allProjects);
-  // }
 
   static deleteProject(id) {
     const data = this.getAllProjects();
@@ -78,11 +59,6 @@ class ProjectStorage {
     const data = this.getAllProjects();
     return data.find((project) => project.id === id);
   }
-
-  // static getTaskById(id) {
-  //   const allProjects = this.getAllProjects();
-  //   return allProjects.find((project) => project.allTasks.some((task) => task.id === id));
-  // }
 }
 
 export default ProjectStorage;

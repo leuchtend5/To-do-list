@@ -1,15 +1,12 @@
 import { format } from 'date-fns';
 import '../components/task-input-box';
-// import CollectAllProjects from '../data/collect-all-projects';
 import TaskCounter from './task-counter';
 import TaskPriorityColor from './task-color';
 import TaskStorage from '../data/task-storage';
-// import ProjectStorage from '../data/project-storage';
-// import LocalStorage from './local-storage';
 
 const EditTaskHelper = {
   async init({ container, data }) {
-    // this._findSelectedTask(data);
+    this._findSelectedTask(data);
     this._selectedTask = data.target;
 
     // create input dialog box when user click edit-btn
@@ -34,10 +31,6 @@ const EditTaskHelper = {
     addBtn.style.display = 'none';
     saveBtn.style.display = 'block';
 
-    // const foundProject = CollectAllProjects.findProjectByName(title);
-    // const foundProject = ProjectStorage.getProjectByName(title);
-    // const foundTask = foundProject.findTask(taskId);
-
     this._existedData({
       name,
       date,
@@ -57,16 +50,16 @@ const EditTaskHelper = {
     });
   },
 
-  // _findSelectedTask(data) {
-  //   const allTasks = document.querySelectorAll('user-task');
-  //   const newArray = Array.from(allTasks);
-  //   const index = newArray.findIndex((task) => task._taskId === data.detail.taskId);
-  //   this._selectedTask = allTasks[index];
+  _findSelectedTask(data) {
+    const allTasks = document.querySelectorAll('user-task');
+    const newArray = Array.from(allTasks);
+    const index = newArray.findIndex((task) => task._taskId === data.detail.taskId);
+    this._selectedTask = allTasks[index];
 
-  //   allTasks.forEach((task) => {
-  //     task.style.display = 'block';
-  //   });
-  // },
+    allTasks.forEach((task) => {
+      task.style.display = 'block';
+    });
+  },
 
   _cancelFunction(button) {
     button.addEventListener('click', () => {

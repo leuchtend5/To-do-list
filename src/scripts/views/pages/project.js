@@ -1,5 +1,4 @@
 import UrlParser from '../../routes/url-parser';
-// import CollectAllProjects from '../../data/collect-all-projects';
 import ProjectStorage from '../../data/project-storage';
 import ShowTaskHelper from '../../utils/show-usertask-helper';
 import EditTaskHelper from '../../utils/edit-task-helper';
@@ -19,7 +18,12 @@ const ProjectPage = {
     const url = UrlParser.parseActiveUrlWithoutCombiner();
     const title = document.querySelector('.menu-title');
     const findProject = ProjectStorage.getProjectById(url.id);
-    title.textContent = findProject.projectName;
+
+    if (findProject === undefined) {
+      window.location.hash = '/inbox';
+    } else {
+      title.textContent = findProject.projectName;
+    }
 
     const userTasks = document.querySelector('.user-tasks');
     const addTask = document.createElement('add-task');

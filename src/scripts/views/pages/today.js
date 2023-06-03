@@ -1,7 +1,7 @@
 import { format } from 'date-fns';
 import ShowTaskHelper from '../../utils/show-usertask-helper';
 import TaskStorage from '../../data/task-storage';
-// import CollectAllTask from '../../data/collect-all-tasks';
+import EditTaskHelper from '../../utils/edit-task-helper';
 
 const TodayPage = {
   async render() {
@@ -16,7 +16,27 @@ const TodayPage = {
     const todayDate = format(new Date(), 'yyyy-MM-dd');
     const userTasks = document.querySelector('.user-tasks');
 
-    ShowTaskHelper.showAllTask(userTasks, TaskStorage.filterTaskByToday(todayDate));
+    userTasks.addEventListener('edit-task', (e) => {
+      this._removeTaskInputBox();
+
+      EditTaskHelper.init({
+        container: userTasks,
+        data: e,
+      });
+    });
+
+    if (TaskStorage.filterTaskByToday(todayDate).length === 0) {
+      userTasks.textContent = 'No tasks found';
+    } else {
+      ShowTaskHelper.showAllTask(userTasks, TaskStorage.filterTaskByToday(todayDate));
+    }
+  },
+
+  _removeTaskInputBox() {
+    const existingTaskInput = document.querySelector('task-input');
+    if (existingTaskInput) {
+      existingTaskInput.remove();
+    }
   },
 };
 

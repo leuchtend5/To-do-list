@@ -1,5 +1,4 @@
 import ShowTaskHelper from '../../utils/show-usertask-helper';
-// import CollectAllTask from '../../data/collect-all-tasks';
 import TaskStorage from '../../data/task-storage';
 
 const CompletedTasksPage = {
@@ -13,7 +12,12 @@ const CompletedTasksPage = {
 
   async afterRender() {
     const userTasks = document.querySelector('.user-tasks');
-    ShowTaskHelper.showAllTask(userTasks, TaskStorage.filterCompletedTask());
+
+    if (TaskStorage.filterCompletedTask().length === 0) {
+      userTasks.textContent = 'No tasks found';
+    } else {
+      ShowTaskHelper.showAllTask(userTasks, TaskStorage.filterCompletedTask());
+    }
   },
 };
 

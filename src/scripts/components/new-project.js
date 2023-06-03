@@ -1,6 +1,4 @@
 import { LitElement, html } from 'lit';
-// import CollectAllProjects from '../data/collect-all-projects';
-// import CollectAllTask from '../data/collect-all-tasks';
 import ProjectCounter from '../utils/project-counter';
 import ProjectStorage from '../data/project-storage';
 import TaskStorage from '../data/task-storage';
@@ -71,8 +69,6 @@ class NewProject extends LitElement {
         composed: true,
         detail: {
           project: ProjectStorage.getProjectById(this._projectId),
-          // projectId: this._projectId,
-          // projectName: this._oldProjectName,
         },
       });
 
@@ -84,17 +80,6 @@ class NewProject extends LitElement {
     const deleteBtn = this.querySelector('.delete-btn');
 
     deleteBtn.addEventListener('click', () => {
-      // also delete project's task in CollectAllTask Class
-      // const taskInProject = CollectAllProjects.findProjectById(this._projectId).allTasks;
-      // taskInProject.forEach((task) => CollectAllTask.deleteTask(task.id));
-      // LocalStorage.saveAllTasks(CollectAllTask.allTasks);
-
-      // CollectAllProjects.deleteProject(this._projectId);
-      // LocalStorage.saveAllProjects(CollectAllProjects.allProjects);
-
-      // const taskInProject = ProjectStorage.getProjectById(this._projectId).allTasks;
-      // taskInProject.forEach((task) => TaskStorage.deleteTask(task.id));
-
       TaskStorage.getAllTasks().forEach((task) => {
         if (task.projectId === this._projectId) {
           TaskStorage.deleteTask(task.id);
@@ -105,7 +90,7 @@ class NewProject extends LitElement {
 
       this.remove();
       ProjectCounter.init();
-      // window.location.hash = '/inbox';
+      location.reload();
     });
   }
 
